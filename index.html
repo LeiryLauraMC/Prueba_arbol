@@ -268,18 +268,10 @@
 </style>
 <style>
 .back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 14px;
-  font-size: 0.8rem;
-  color: var(--subtext);
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 6px 14px; font-size: 0.8rem; color: var(--subtext);
+  cursor: pointer; font-family: inherit; transition: background 0.15s;
 }
 .back-btn:hover { background: #f0ece4; }
 </style>
@@ -297,50 +289,47 @@
   <div class="tree-panel">
     <div class="tree-wrapper" id="treeWrapper">
       <div id="svgContainer" style="width:100%;position:relative;"></div>
-      <!-- Hotspot overlay -->
       <svg id="hotspots" viewBox="0 0 661.5 697.499983" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="280.8" cy="393.6" r="24" fill="transparent" class="hotspot" data-target="rama01-list" data-tip="Rama 01: Anatomía y Biomecánica PF" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="287.4" cy="317.2" r="24" fill="transparent" class="hotspot" data-target="rama02-list" data-tip="Rama 02: SDPF y Tratamiento Conservador" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="355.1" cy="239.1" r="24" fill="transparent" class="hotspot" data-target="rama03-list" data-tip="Rama 03: Modelación Biomecánica Computacional" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="422.1" cy="314.6" r="24" fill="transparent" class="hotspot" data-target="rama04-list" data-tip="Rama 04: Articulación Policéntrica y CIR" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="389.5" cy="421.3" r="24" fill="transparent" class="hotspot" data-target="rama05-list" data-tip="Rama 05: Diseño Personalizado - Impresión 3D" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="340.0" cy="476.0" r="20" fill="transparent" class="hotspot" data-target="hipotesis" data-tip="Hipótesis central" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="511.0" cy="660.0" r="22" fill="transparent" class="hotspot" data-target="pregunta" data-tip="Pregunta de investigación" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="237.6" cy="468.2" r="18" fill="transparent" class="hotspot" data-target="r01p01" data-tip="R01·1 Subject-specific evaluation PFJ" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="140.1" cy="472.8" r="18" fill="transparent" class="hotspot" data-target="r01p02" data-tip="R01·2 Computer model patellar biomechanics" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="87.6" cy="396.6" r="18" fill="transparent" class="hotspot" data-target="r01p03" data-tip="R01·3 In vivo PF contact mechanics" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="26.1" cy="336.3" r="18" fill="transparent" class="hotspot" data-target="r01p04" data-tip="R01·4 Computational imaging PFJ stress" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="35.1" cy="257.5" r="18" fill="transparent" class="hotspot" data-target="r01p05" data-tip="R01·5 PF mechanics: review pathomechanics" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="60.8" cy="188.1" r="18" fill="transparent" class="hotspot" data-target="r01p06" data-tip="R01·6 Knee muscle forces walking/running" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="97.1" cy="148.9" r="18" fill="transparent" class="hotspot" data-target="r02p01" data-tip="R02·1 Abnormal hip mechanics on knee injury" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="118.7" cy="124.2" r="18" fill="transparent" class="hotspot" data-target="r02p02" data-tip="R02·2 PF pain consensus 4th Retreat" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="146.5" cy="100.9" r="18" fill="transparent" class="hotspot" data-target="r02p03" data-tip="R02·3 Patellofemoral pain syndrome" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="173.7" cy="79.2" r="18" fill="transparent" class="hotspot" data-target="r02p04" data-tip="R02·4 Management of PFPS" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="205.2" cy="61.5" r="18" fill="transparent" class="hotspot" data-target="r02p05" data-tip="R02·5 Knee orthoses PFPS Cochrane" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="239.1" cy="53.0" r="18" fill="transparent" class="hotspot" data-target="r02p06" data-tip="R02·6 Tricompartmental unloader brace" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="275.7" cy="48.4" r="18" fill="transparent" class="hotspot" data-target="r02p07" data-tip="R02·7 PF pain proximal distal local factors" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="303.9" cy="43.0" r="18" fill="transparent" class="hotspot" data-target="r03p01" data-tip="R03·1 OpenSim open-source software" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="336.9" cy="43.0" r="18" fill="transparent" class="hotspot" data-target="r03p02" data-tip="R03·2 OpenSim musculoskeletal framework" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="369.6" cy="45.4" r="18" fill="transparent" class="hotspot" data-target="r03p03" data-tip="R03·3 Grand challenge CAMS-Knee" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="398.4" cy="53.0" r="18" fill="transparent" class="hotspot" data-target="r03p04" data-tip="R03·4 Accuracy musculoskeletal simulation" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="429.4" cy="57.6" r="18" fill="transparent" class="hotspot" data-target="r03p05" data-tip="R03·5 Multibody simulation patellar TKA" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="456.9" cy="69.2" r="18" fill="transparent" class="hotspot" data-target="r03p06" data-tip="R03·6 Automated muscle paths OpenSim" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="484.9" cy="83.9" r="18" fill="transparent" class="hotspot" data-target="r03p07" data-tip="R03·7 Multibody dynamics systematic review" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="505.9" cy="105.0" r="18" fill="transparent" class="hotspot" data-target="r03p08" data-tip="R03·8 Model-based estimation muscle forces" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="539.7" cy="131.2" r="18" fill="transparent" class="hotspot" data-target="r04p01" data-tip="R04·1 Polycentric exoprosthetic knee joints" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="567.1" cy="153.4" r="18" fill="transparent" class="hotspot" data-target="r04p02" data-tip="R04·2 Novel polycentric knee exoskeleton" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="593.4" cy="193.0" r="18" fill="transparent" class="hotspot" data-target="r04p03" data-tip="R04·3 Adjustable polycentric mechanism CIR" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="608.0" cy="236.2" r="18" fill="transparent" class="hotspot" data-target="r04p04" data-tip="R04·4 Knee prototype cam mechanism" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="608.0" cy="283.8" r="18" fill="transparent" class="hotspot" data-target="r04p05" data-tip="R04·5 Four-bar polycentric knee joint" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="634.3" cy="320.2" r="18" fill="transparent" class="hotspot" data-target="r05p01" data-tip="R05·1 Design prototyping active knee orthosis" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="619.6" cy="393.9" r="18" fill="transparent" class="hotspot" data-target="r05p02" data-tip="R05·2 Low-cost 3D-printed smart orthosis" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="573.3" cy="447.8" r="18" fill="transparent" class="hotspot" data-target="r05p03" data-tip="R05·3 Digital workflow bespoke orthoses" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="511.2" cy="499.0" r="18" fill="transparent" class="hotspot" data-target="r05p04" data-tip="R05·4 Design 3D printing wrist-hand orthosis" style="pointer-events:all;cursor:pointer;"/>
-        <circle cx="432.4" cy="486.7" r="18" fill="transparent" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="547.1" cy="613.7" r="22" fill="transparent" class="hotspot" data-target="pregunta" data-tip="Pregunta de investigación" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="378.0" cy="459.0" r="20" fill="transparent" class="hotspot" data-target="hipotesis" data-tip="Hipótesis central" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="268.6" cy="427.4" r="18" fill="transparent" class="hotspot" data-target="r01p01" data-tip="R01·1 Subject-specific evaluation PFJ" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="184.0" cy="428.2" r="18" fill="transparent" class="hotspot" data-target="r01p02" data-tip="R01·2 Computer model patellar biomechanics" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="129.3" cy="360.7" r="18" fill="transparent" class="hotspot" data-target="r01p03" data-tip="R01·3 In vivo PF contact mechanics MRI" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="67.6" cy="307.7" r="18" fill="transparent" class="hotspot" data-target="r01p04" data-tip="R01·4 Computational imaging PF stress" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="67.6" cy="241.9" r="18" fill="transparent" class="hotspot" data-target="r01p05" data-tip="R01·5 PF mechanics review pathomechanics" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="94.5" cy="177.8" r="18" fill="transparent" class="hotspot" data-target="r01p06" data-tip="R01·6 Knee muscle forces walking/running" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="139.3" cy="138.5" r="18" fill="transparent" class="hotspot" data-target="r02p01" data-tip="R02·1 Abnormal hip mechanics knee injury" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="124.3" cy="117.1" r="18" fill="transparent" class="hotspot" data-target="r02p02" data-tip="R02·2 PF pain consensus 4th Retreat" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="159.2" cy="100.9" r="18" fill="transparent" class="hotspot" data-target="r02p03" data-tip="R02·3 Patellofemoral pain syndrome" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="197.0" cy="70.9" r="18" fill="transparent" class="hotspot" data-target="r02p04" data-tip="R02·4 Management of PFPS" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="233.8" cy="59.8" r="18" fill="transparent" class="hotspot" data-target="r02p05" data-tip="R02·5 Knee orthoses PFPS Cochrane" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="255.6" cy="49.6" r="18" fill="transparent" class="hotspot" data-target="r02p06" data-tip="R02·6 Tricompartmental unloader brace" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="278.5" cy="42.7" r="18" fill="transparent" class="hotspot" data-target="r02p07" data-tip="R02·7 PF pain proximal distal local factors" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="306.4" cy="42.7" r="18" fill="transparent" class="hotspot" data-target="r03p01" data-tip="R03·1 OpenSim open-source software" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="328.3" cy="38.5" r="18" fill="transparent" class="hotspot" data-target="r03p02" data-tip="R03·2 OpenSim musculoskeletal framework" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="356.1" cy="36.8" r="18" fill="transparent" class="hotspot" data-target="r03p03" data-tip="R03·3 Grand challenge CAMS-Knee" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="380.0" cy="42.7" r="18" fill="transparent" class="hotspot" data-target="r03p04" data-tip="R03·4 Accuracy musculoskeletal simulation" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="405.9" cy="47.0" r="18" fill="transparent" class="hotspot" data-target="r03p05" data-tip="R03·5 Multibody simulation patellar TKA" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="430.7" cy="54.7" r="18" fill="transparent" class="hotspot" data-target="r03p06" data-tip="R03·6 Automated muscle paths OpenSim" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="454.6" cy="63.3" r="18" fill="transparent" class="hotspot" data-target="r03p07" data-tip="R03·7 Multibody dynamics systematic review" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="495.4" cy="70.1" r="18" fill="transparent" class="hotspot" data-target="r03p08" data-tip="R03·8 Model-based estimation muscle forces" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="527.2" cy="85.5" r="18" fill="transparent" class="hotspot" data-target="r04p01" data-tip="R04·1 Polycentric exoprosthetic knee joints" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="545.1" cy="111.1" r="18" fill="transparent" class="hotspot" data-target="r04p02" data-tip="R04·2 Novel polycentric knee exoskeleton" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="559.0" cy="143.6" r="18" fill="transparent" class="hotspot" data-target="r04p03" data-tip="R04·3 Adjustable polycentric mechanism CIR" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="564.0" cy="177.8" r="18" fill="transparent" class="hotspot" data-target="r04p04" data-tip="R04·4 Knee prototype cam mechanism" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="559.0" cy="212.0" r="18" fill="transparent" class="hotspot" data-target="r04p05" data-tip="R04·5 Four-bar polycentric knee joint" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="575.0" cy="247.9" r="18" fill="transparent" class="hotspot" data-target="r05p01" data-tip="R05·1 Design prototyping active knee orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="552.1" cy="290.6" r="18" fill="transparent" class="hotspot" data-target="r05p02" data-tip="R05·2 Low-cost 3D-printed smart orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="519.3" cy="324.8" r="18" fill="transparent" class="hotspot" data-target="r05p03" data-tip="R05·3 Digital workflow bespoke orthoses" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="484.4" cy="359.0" r="18" fill="transparent" class="hotspot" data-target="r05p04" data-tip="R05·4 Design 3D printing wrist-hand orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="437.7" cy="388.9" r="18" fill="transparent" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="318.3" cy="360.7" r="26" fill="transparent" class="hotspot" data-target="rama01-list" data-tip="Rama 01: Anatomía y Biomecánica PF" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="328.3" cy="283.8" r="26" fill="transparent" class="hotspot" data-target="rama02-list" data-tip="Rama 02: SDPF y Tratamiento Conservador" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="353.1" cy="212.0" r="26" fill="transparent" class="hotspot" data-target="rama03-list" data-tip="Rama 03: Modelación Biomecánica Computacional" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="445.6" cy="283.8" r="26" fill="transparent" class="hotspot" data-target="rama04-list" data-tip="Rama 04: Articulación Policéntrica y CIR" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="425.7" cy="369.3" r="26" fill="transparent" class="hotspot" data-target="rama05-list" data-tip="Rama 05: Diseño Personalizado - Impresión 3D" style="pointer-events:all;cursor:pointer;"/>
       </svg>
     </div>
-
-    <!-- Legend below tree -->
     <div class="legend" style="width:100%;max-width:620px;">
       <h3>Ramas del árbol</h3>
       <div class="legend-item"><div class="legend-dot" style="background:var(--rama1)"></div> Rama 1 · Anatomía y Biomecánica PF</div>
@@ -351,17 +340,14 @@
     </div>
   </div>
 
-  <!-- RIGHT: Info panel -->
   <div class="info-panel" id="infoPanel">
     <div class="placeholder" id="placeholder">
       <div class="icon">🌿</div>
       <p>Selecciona un elemento del árbol para explorar su contenido.<br><br>
       <strong>①–⑤</strong> Ver lista de papers por rama<br>
       <strong>Números de colores</strong> Ver detalle de cada paper<br>
-      <strong>💡</strong> Hipótesis central<br>
-      <strong>❓</strong> Pregunta de investigación</p>
+      <strong>💡</strong> Hipótesis central · <strong>❓</strong> Pregunta de investigación</p>
     </div>
-
     <!-- ===== RAÍZ: Pregunta de Investigación ===== -->
     <div class="card" id="pregunta">
       <div class="card-header">
@@ -981,78 +967,55 @@
     </div>
 
   
-  </div><!-- /info-panel -->
-</div><!-- /main-layout -->
+  </div>
+</div>
 
-<!-- Tooltip -->
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-// ── Load SVG inline ──
 const svgContainer = document.getElementById('svgContainer');
 fetch('svg_arbol.svg')
   .then(r => r.text())
   .then(svgText => {
     svgContainer.innerHTML = svgText;
     const svg = svgContainer.querySelector('svg');
-    if (svg) {
-      svg.style.width = '100%';
-      svg.style.height = 'auto';
-      svg.style.display = 'block';
-    }
+    if (svg) { svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block'; }
   })
   .catch(() => {
-    svgContainer.innerHTML = '<div style="width:100%;aspect-ratio:661.5/697.5;background:linear-gradient(135deg,#f5f1eb,#ede5d8);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:serif;color:#a08060;font-size:1rem;text-align:center;padding:20px;">🌳<br>Árbol de Ciencia<br><small style="font-size:0.75rem;opacity:0.7;margin-top:8px;display:block;">Coloca el archivo svg_arbol.svg en la misma carpeta que este HTML</small></div>';
+    svgContainer.innerHTML = '<div style="width:100%;aspect-ratio:661.5/697.5;background:linear-gradient(135deg,#f5f1eb,#ede5d8);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:serif;color:#a08060;font-size:1rem;text-align:center;padding:20px;">🌳<br>Árbol de Ciencia<br><small style="font-size:0.75rem;opacity:0.7;margin-top:8px;display:block;">Coloca svg_arbol.svg en la misma carpeta</small></div>';
   });
 
-// ── Card display logic ──
 function showCard(id) {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
   document.getElementById('placeholder').style.display = 'none';
   const card = document.getElementById(id);
-  if (card) {
-    card.classList.add('active');
-    document.getElementById('infoPanel').scrollTop = 0;
-  }
+  if (card) { card.classList.add('active'); document.getElementById('infoPanel').scrollTop = 0; }
 }
 
-// ── Hotspot interactions ──
 const tooltip = document.getElementById('tooltip');
-
 document.querySelectorAll('.hotspot').forEach(el => {
   el.addEventListener('click', function(e) {
     e.stopPropagation();
     const target = this.dataset.target;
     if (target) showCard(target);
   });
-
-  el.addEventListener('mouseenter', function(e) {
+  el.addEventListener('mouseenter', function() {
     const tip = this.dataset.tip;
-    if (tip) {
-      tooltip.textContent = tip;
-      tooltip.classList.add('show');
-    }
+    if (tip) { tooltip.textContent = tip; tooltip.classList.add('show'); }
   });
-
   el.addEventListener('mousemove', function(e) {
     tooltip.style.left = (e.clientX + 14) + 'px';
     tooltip.style.top  = (e.clientY - 10) + 'px';
   });
-
-  el.addEventListener('mouseleave', function() {
-    tooltip.classList.remove('show');
-  });
+  el.addEventListener('mouseleave', function() { tooltip.classList.remove('show'); });
 });
 
-// ── Branch list hover colors ──
 document.querySelectorAll('.branch-list li').forEach(li => {
   li.addEventListener('mouseenter', function() {
-    this.style.background = 'rgba(0,0,0,0.04)';
-    this.style.borderColor = 'rgba(0,0,0,0.08)';
+    this.style.background = 'rgba(0,0,0,0.04)'; this.style.borderColor = 'rgba(0,0,0,0.08)';
   });
   li.addEventListener('mouseleave', function() {
-    this.style.background = '';
-    this.style.borderColor = 'transparent';
+    this.style.background = ''; this.style.borderColor = 'transparent';
   });
 });
 </script>
