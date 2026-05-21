@@ -37,17 +37,33 @@
   header {
     background: #fff;
     border-bottom: 1px solid var(--border);
-    padding: 12px 36px;
+    padding: 11px 36px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
+    gap: 18px;
     flex-shrink: 0;
   }
   header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--trunk);
     letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  header .header-sep {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+    flex-shrink: 0;
+    align-self: center;
+  }
+  header .header-sub {
+    font-size: 0.76rem;
+    color: var(--subtext);
+    font-style: italic;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
   }
 
   /* ── MAIN LAYOUT ── */
@@ -62,29 +78,27 @@
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 12px 24px;
+    padding: 14px 16px 12px 24px;
     overflow: hidden;
-    gap: 12px;
+    gap: 0;
   }
 
-  /* Legend on top */
+  /* Legend below tree */
   .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-    padding: 10px 14px;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 2px 2px 2px;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
   }
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 7px;
-    font-size: 0.75rem;
-    color: var(--text);
-    white-space: nowrap;
+    gap: 8px;
+    font-size: 0.76rem;
+    color: var(--subtext);
   }
   .legend-dot {
     width: 10px; height: 10px;
@@ -187,6 +201,7 @@
     font-weight: 700;
     line-height: 1.45;
     color: var(--text);
+    text-align: justify;
   }
   .card-header .authors {
     margin-top: 7px;
@@ -194,6 +209,7 @@
     font-style: italic;
     color: var(--subtext);
     font-weight: 500;
+    text-align: justify;
   }
   .card-header .journal {
     font-size: 0.76rem;
@@ -214,6 +230,7 @@
     font-size: 0.84rem;
     line-height: 1.65;
     color: var(--text);
+    text-align: justify;
   }
 
   /* Branch list */
@@ -243,7 +260,7 @@
     font-size: 0.68rem; font-weight: 700; color: #fff;
     margin-top: 1px; flex-shrink: 0;
   }
-  .branch-list li .paper-title { flex: 1; font-weight: 500; }
+  .branch-list li .paper-title { flex: 1; font-weight: 500; text-align: justify; }
   .branch-list li .paper-authors {
     font-size: 0.73rem; color: #999; margin-top: 2px; font-style: italic;
   }
@@ -299,21 +316,14 @@
 
 <header>
   <h1>Árbol de Ciencia</h1>
+  <div class="header-sep"></div>
+  <span class="header-sub">Diseño y validación biomecánica de órtesis patelofemoral personalizada mediante modelación computacional</span>
 </header>
 
 <div class="main-layout">
 
   <!-- LEFT -->
   <div class="tree-panel">
-
-    <!-- Legend at top -->
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rama1)"></div>Rama 1 · Anatomía y Biomecánica PF</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rama2)"></div>Rama 2 · SDPF y Tratamiento Conservador</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rama3)"></div>Rama 3 · Modelación Biomecánica Computacional</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rama4)"></div>Rama 4 · Articulación Policéntrica y CIR</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rama5)"></div>Rama 5 · Diseño Personalizado · Impresión 3D</div>
-    </div>
 
     <!-- Tree -->
     <div class="tree-wrapper" id="treeWrapper">
@@ -360,6 +370,15 @@
     <circle cx="514" cy="501" r="16" fill="transparent" class="hotspot" data-target="r05p04" data-tip="R05·4 Design 3D printing wrist-hand orthosis" style="pointer-events:all;cursor:pointer;"/>
     <circle cx="435" cy="489" r="16" fill="transparent" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis" style="pointer-events:all;cursor:pointer;"/>
       </svg>
+    </div>
+
+    <!-- Legend below tree -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama1)"></div>Rama 1 &middot; Anatomía y Biomecánica Patelofemoral</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama2)"></div>Rama 2 &middot; SDPF y Tratamiento Conservador</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama3)"></div>Rama 3 &middot; Modelación Biomecánica Computacional</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama4)"></div>Rama 4 &middot; Articulación Policéntrica y CIR</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama5)"></div>Rama 5 &middot; Diseño Personalizado · Impresión 3D</div>
     </div>
 
   </div>
