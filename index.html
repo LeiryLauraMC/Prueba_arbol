@@ -3,589 +3,1048 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Árbol de Ciencia — Órtesis Patelofemoral Personalizada</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>Árbol de Ciencia – Tesis de Maestría</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#F8F6F1;--bg2:#EFEDE7;--ink:#1C1A17;--ink2:#5C5850;--ink3:#9A9790;
-  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.13);
-  --root-c:#7A5C10;--root-bg:#FDF6E3;--root-bd:#C8A96E;
-  --trunk-c:#2E5C8A;--trunk-bg:#EDF4FC;--trunk-bd:#7EB2D9;
-  --c1:#5B4BAA;--c1-bg:#F0EDFB;--c1-bd:#B5A8E0;
-  --c2:#9E3532;--c2-bg:#FBF0EF;--c2-bd:#DFA0A0;
-  --c3:#1F6E8C;--c3-bg:#EDF6FB;--c3-bd:#8AC8DF;
-  --c4:#7A5C10;--c4-bg:#FBF5E6;--c4-bd:#D4AA55;
-  --c5:#2A7A50;--c5-bg:#EBF7F2;--c5-bd:#7DC4A0;
-  --tree-brown:#6B4226;--tree-bark:#8B5E3C;
-  --font-display:'Cormorant Garamond',Georgia,serif;
-  --font-body:'Outfit',sans-serif;
-  --font-mono:'JetBrains Mono',monospace;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-body);min-height:100vh;overflow-x:hidden}
+  :root {
+    --bg: #f5f1eb;
+    --card-bg: #ffffff;
+    --rama1: #b8a9d4;
+    --rama2: #e8b4b8;
+    --rama3: #a8cde0;
+    --rama4: #d4b87a;
+    --rama5: #7ecab0;
+    --trunk: #6b3f1e;
+    --text: #2c2c2c;
+    --subtext: #555;
+    --border: #e0d8cc;
+    --shadow: rgba(0,0,0,0.12);
+  }
 
-/* HEADER */
-.page-header{background:linear-gradient(135deg,#FAF8F2 0%,#F0EDE3 100%);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5)) 1;padding:1.8rem 2rem 1.3rem;text-align:center}
-.header-eyebrow{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--root-c);margin-bottom:.5rem}
-.page-header h1{font-family:var(--font-display);font-size:clamp(1.1rem,2.2vw,1.75rem);font-weight:600;line-height:1.3;color:var(--ink);max-width:740px;margin:0 auto .35rem}
-.page-header h1 em{font-style:italic;color:var(--root-c)}
-.header-sub{font-size:.72rem;color:var(--ink2);font-style:italic}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* LEGEND */
-.legend{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:center;padding:.75rem 1.5rem;background:var(--bg2);border-bottom:1px solid var(--border);font-size:.7rem;color:var(--ink2)}
-.leg-item{display:flex;align-items:center;gap:5px}
-.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
 
-/* PAGE SPLIT */
-.page-body{display:flex;min-height:calc(100vh - 120px)}
+  header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  header .title-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--trunk);
+    line-height: 1.2;
+  }
+  header .title-block p {
+    font-size: 0.78rem;
+    color: var(--subtext);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
 
-/* LEFT: tree */
-.tree-col{flex:1;min-width:0;overflow-x:auto;padding:1.5rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+  .main-layout {
+    display: flex;
+    gap: 0;
+    min-height: calc(100vh - 66px);
+  }
 
-/* RIGHT: info panel */
-.info-col{width:390px;min-width:320px;max-width:410px;border-left:1px solid var(--border2);background:#FDFBF6;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+  /* ── LEFT: Tree ── */
+  .tree-panel {
+    flex: 1 1 60%;
+    padding: 30px 20px 30px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.info-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;color:var(--ink3);padding:2rem;text-align:center}
-.info-empty svg{opacity:.35}
-.info-empty p{font-size:.8rem;line-height:1.65;max-width:210px}
+  .tree-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+  }
 
-.info-card{display:none;flex-direction:column;padding:1.8rem 1.6rem;gap:.85rem}
-.info-card.show{display:flex}
-.i-tag{font-family:var(--font-mono);font-size:.52rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 10px;border-radius:4px;display:inline-block;width:fit-content}
-.i-num{font-family:var(--font-mono);font-size:.6rem;color:var(--ink3)}
-.i-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;line-height:1.35}
-.i-authors{font-size:.78rem;font-style:italic;color:var(--ink2)}
-.i-journal{font-size:.7rem;color:var(--ink3);padding-bottom:.85rem;border-bottom:1px solid var(--border2)}
-.i-sec{margin-bottom:.45rem}
-.i-sec h5{font-family:var(--font-mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.28rem}
-.i-sec p{font-size:.75rem;line-height:1.65;color:var(--ink)}
-.i-kws{display:flex;flex-wrap:wrap;gap:4px}
-.i-kw{font-family:var(--font-mono);font-size:.55rem;padding:2px 7px;border-radius:4px;background:var(--bg2);border:1px solid var(--border2)}
+  .tree-wrapper svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-/* SVG interaction */
-.clickable-leaf{cursor:pointer;transition:opacity .15s}
-.clickable-leaf:hover{opacity:.75}
-.clickable-leaf.active{filter:drop-shadow(0 0 4px rgba(0,0,0,.5))}
-.trunk-hit,.root-hit,.conv-hit,.branch-hit{cursor:pointer;fill:rgba(0,0,0,0)}
+  /* ── RIGHT: Info panel ── */
+  .info-panel {
+    flex: 0 0 420px;
+    background: var(--card-bg);
+    border-left: 1px solid var(--border);
+    padding: 30px 28px;
+    overflow-y: auto;
+    min-height: 100%;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 66px);
+  }
 
-/* root/trunk/conv visible nodes */
-.node-box{position:relative;border-radius:10px;padding:.9rem 1.5rem;text-align:center;border:1.5px solid}
-.ntag{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.3rem}
-.ntitle{font-family:var(--font-display);font-size:.9rem;font-weight:600;line-height:1.4}
-.nsub{font-size:.7rem;color:var(--ink2);font-style:italic;margin-top:.25rem}
+  .info-panel .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    gap: 14px;
+    color: #bbb;
+  }
+  .info-panel .placeholder .icon { font-size: 3rem; opacity: 0.4; }
+  .info-panel .placeholder p { font-size: 0.88rem; line-height: 1.6; max-width: 260px; }
 
-.root-box{background:var(--root-bg);border-color:var(--root-bd);cursor:pointer;box-shadow:0 2px 18px rgba(200,169,110,.22)}
-.root-box .ntag{color:var(--root-c)}
-.root-box .ntitle{color:var(--root-c)}
-.trunk-box{background:var(--trunk-bg);border-color:var(--trunk-bd);cursor:pointer;box-shadow:0 2px 14px rgba(126,178,217,.15)}
-.trunk-box .ntag{color:var(--trunk-c)}
-.trunk-box .ntitle{color:var(--trunk-c)}
-.conv-box{background:var(--c5-bg);border-color:var(--c5-bd);cursor:pointer;max-width:520px;width:100%}
-.conv-box .ntag{color:var(--c5)}
-.conv-box .ntitle{color:var(--ink);font-size:.95rem}
-.method-box{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1.8rem;text-align:center;max-width:460px;width:100%}
-.method-box .ntag{color:var(--ink2)}
-.method-box .nsub{font-size:.68rem}
+  .card {
+    display: none;
+    animation: fadeIn 0.25s ease;
+  }
+  .card.active { display: block; }
 
-.vline{width:2px}
-.vlt{height:28px;background:linear-gradient(var(--root-bd),var(--trunk-bd))}
-.vlb{height:24px;background:var(--trunk-bd)}
-.vlg{height:18px;background:var(--border2)}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-/* branch list in info panel */
-.branch-list{display:flex;flex-direction:column;gap:.45rem;margin-top:.2rem}
-.blist-item{border-radius:7px;padding:.5rem .65rem;cursor:pointer;border:1px solid;border-left-width:3px;transition:transform .15s,box-shadow .15s}
-.blist-item:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.1)}
-.blist-num{font-family:var(--font-mono);font-size:.46rem;color:var(--ink3);margin-bottom:.12rem}
-.blist-title{font-family:var(--font-display);font-size:.72rem;font-weight:600;line-height:1.3;margin-bottom:.08rem}
-.blist-authors{font-size:.58rem;color:var(--ink2);font-style:italic}
+  .card-header {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+  .card-header .rama-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .card-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .card-header .authors {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--subtext);
+  }
+  .card-header .journal {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 2px;
+  }
 
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(28,26,23,.5);backdrop-filter:blur(4px);z-index:1000;align-items:center;justify-content:center;padding:1.5rem}
-.modal-overlay.open{display:flex}
-.modal{background:#FDFBF6;border:1px solid var(--border2);border-radius:16px;max-width:620px;width:100%;max-height:88vh;overflow-y:auto;padding:2rem;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.18);animation:mIn .2s ease-out}
-@keyframes mIn{from{transform:translateY(14px) scale(.97);opacity:0}to{transform:none;opacity:1}}
-.modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg2);border:1px solid var(--border2);color:var(--ink2);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-body)}
-.modal-close:hover{background:var(--border2)}
-.m-tag{font-family:var(--font-mono);font-size:.53rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:.45rem;padding:3px 9px;border-radius:4px;display:inline-block}
-.m-num{font-family:var(--font-mono);font-size:.58rem;color:var(--ink3);margin-bottom:.3rem}
-.m-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;line-height:1.35;margin-bottom:.45rem}
-.m-authors{font-size:.8rem;font-style:italic;color:var(--ink2);margin-bottom:.12rem}
-.m-journal{font-size:.72rem;color:var(--ink3);margin-bottom:1.1rem;padding-bottom:.9rem;border-bottom:1px solid var(--border2)}
-.m-sec{margin-bottom:.9rem}
-.m-sec h5{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:.35rem}
-.m-sec p{font-size:.79rem;line-height:1.65;color:var(--ink)}
-.m-kws{display:flex;flex-wrap:wrap;gap:5px}
-.m-kw{font-family:var(--font-mono);font-size:.58rem;padding:2px 7px;border-radius:4px;background:var(--bg2);border:1px solid var(--border2);color:var(--ink2)}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+  .card-body .field {
+    margin-bottom: 14px;
+  }
+  .card-body .field-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtext);
+    margin-bottom: 4px;
+  }
+  .card-body .field-value {
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* Branch list card */
+  .branch-list { list-style: none; }
+  .branch-list li {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    transition: background 0.15s, transform 0.1s;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .branch-list li:hover {
+    transform: translateX(3px);
+  }
+  .branch-list li .num {
+    flex: 0 0 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 1px;
+  }
+  .branch-list li .paper-title { flex: 1; font-weight: 500; }
+  .branch-list li .paper-authors { font-size: 0.75rem; color: #888; margin-top: 2px; font-style: italic; }
+
+  /* Legend */
+  .legend {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .legend h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--subtext);
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex: 0 0 12px;
+  }
+
+  /* Hover targets on tree */
+  .hotspot {
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .hotspot:hover { opacity: 0.75; }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed;
+    background: rgba(44,44,44,0.92);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.15s;
+    max-width: 200px;
+    line-height: 1.4;
+  }
+  .tooltip.show { opacity: 1; }
+
+  /* Scroll bar styling */
+  .info-panel::-webkit-scrollbar { width: 5px; }
+  .info-panel::-webkit-scrollbar-track { background: transparent; }
+  .info-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+  @media (max-width: 900px) {
+    .main-layout { flex-direction: column; }
+    .info-panel { flex: none; width: 100%; height: auto; position: static; border-left: none; border-top: 1px solid var(--border); }
+    .tree-panel { padding: 20px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="page-header">
-  <div class="header-eyebrow">Árbol de Ciencia · Bibliografía de Tesis</div>
-  <h1>Diseño y validación biomecánica de <em>órtesis patelofemoral personalizada</em> mediante modelación computacional</h1>
-  <p class="header-sub">Maestría en Ingeniería Biomédica · Universidad del Norte · Barranquilla, 2026 · 31 referencias · Clic en cualquier elemento del árbol para ver la información</p>
+<header>
+  <div class="title-block">
+    <h1>Árbol de Ciencia · Tesis de Maestría en Ingeniería Biomédica</h1>
+    <p>Universidad del Norte · Diseño y validación biomecánica de órtesis patelofemoral personalizada · Haz clic sobre los elementos del árbol para explorar</p>
+  </div>
 </header>
 
-<div class="legend">
-  <div class="leg-item"><div class="leg-dot" style="background:#B5A8E0"></div>Rama 1 — Biomecánica PF</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#DFA0A0"></div>Rama 2 — SDPF / Tratamiento</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#8AC8DF"></div>Rama 3 — Modelación Computacional</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#D4AA55"></div>Rama 4 — Policéntrico / CIR</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#7DC4A0"></div>Rama 5 — Diseño / 3D</div>
-  <div class="leg-item"><span style="color:var(--root-c);font-size:.85rem">★</span>&nbsp;Referencia central</div>
-</div>
+<div class="main-layout">
+  <!-- LEFT: SVG Tree with hotspot overlay -->
+  <div class="tree-panel">
+    <div class="tree-wrapper" id="treeWrapper">
+      <!-- SVG will be injected here by JS from external file approach -->
+      <div id="svgContainer"></div>
+      <!-- Hotspot overlay (absolute positioned over SVG) -->
+      <svg id="hotspots" viewBox="0 0 661.5 697.5" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+        <!-- Branch circles 01-05 -->
+        <!-- 01 purple ~(258,400) in original coords -->
+        <circle cx="258" cy="400" r="24" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="rama01-list" data-tip="Rama 01: Anatomía y Biomecánica PF" style="pointer-events:all;"/>
+        <!-- 02 pink ~(285,338) -->
+        <circle cx="285" cy="338" r="24" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="rama02-list" data-tip="Rama 02: SDPF y Tratamiento Conservador" style="pointer-events:all;"/>
+        <!-- 03 blue ~(340,265) -->
+        <circle cx="340" cy="265" r="24" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="rama03-list" data-tip="Rama 03: Modelación Biomecánica Computacional" style="pointer-events:all;"/>
+        <!-- 04 gold ~(410,325) -->
+        <circle cx="410" cy="325" r="24" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="rama04-list" data-tip="Rama 04: Articulación Policéntrica y CIR" style="pointer-events:all;"/>
+        <!-- 05 green ~(370,408) -->
+        <circle cx="370" cy="408" r="24" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="rama05-list" data-tip="Rama 05: Diseño Personalizado - Impresión 3D" style="pointer-events:all;"/>
 
-<div class="page-body">
+        <!-- Bombillo encendido (tronco) ~(322,476) -->
+        <circle cx="322" cy="476" r="18" fill="rgba(255,255,255,0.0)" class="hotspot" data-target="hipotesis" data-tip="Hipótesis central" style="pointer-events:all;"/>
 
-  <!-- LEFT: TREE -->
-  <div class="tree-col">
+        <!-- Bombillo pregunta (raíz) ~(511,679) -->
+        <circle cx="511" cy="679" r="22" fill="rgba(255,255,255,0.0)" class="hotspot" data-target="pregunta" data-tip="Pregunta de investigación" style="pointer-events:all;"/>
 
-    <!-- CONVERGENCE top -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin-bottom:.5rem">
-      <div class="node-box conv-box" id="conv-box" style="cursor:pointer" onclick="showConv()">
-        <span class="ntag">Convergencia — Resultado esperado</span>
-        <div class="ntitle">Órtesis PF personalizada validada computacionalmente</div>
-        <div class="nsub">Reduce momentos PF · sin restricción del ROM · sin inhibición del cuádriceps · durante escaleras y sentadilla</div>
-      </div>
-      <div class="vline vlg"></div>
-      <div class="method-box">
-        <span class="ntag">Metodología</span>
-        <div class="nsub">Revisión sistemática PRISMA · Modelación multibody OpenSim · Diseño CAD + FEA · Prototipado 3D · Validación cinemática y EMG</div>
-      </div>
-    </div>
+        <!-- ===== RAMA 01 leaf numbers (purple) ===== -->
+        <!-- Based on PDF: numbers 1-6 scattered in purple zone (upper-left) -->
+        <!-- 1 ~(232,340) --> <circle cx="232" cy="340" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p01" data-tip="R01·1 Subject-specific evaluation of PFJ" style="pointer-events:all;"/>
+        <!-- 2 ~(192,365) --> <circle cx="192" cy="365" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p02" data-tip="R01·2 A computer model to simulate patellar biomechanics" style="pointer-events:all;"/>
+        <!-- 3 ~(165,335) --> <circle cx="165" cy="335" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p03" data-tip="R01·3 In vivo PF contact mechanics – dynamic MRI" style="pointer-events:all;"/>
+        <!-- 4 ~(148,305) --> <circle cx="148" cy="305" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p04" data-tip="R01·4 Combining computational and imaging techniques" style="pointer-events:all;"/>
+        <!-- 5 ~(165,275) --> <circle cx="165" cy="275" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p05" data-tip="R01·5 PF mechanics: review of pathomechanics" style="pointer-events:all;"/>
+        <!-- 6 ~(130,265) --> <circle cx="130" cy="265" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p06" data-tip="R01·6 Knee muscle forces – walking and running" style="pointer-events:all;"/>
 
-    <!-- THE TREE SVG — exact same as reference image, leaves overlaid -->
-    <div style="position:relative;width:860px;max-width:100%">
-      <svg id="tree-svg" viewBox="0 0 860 500" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:860px">
+        <!-- ===== RAMA 02 leaf numbers (pink) ===== -->
+        <!-- 1 ~(260,295) --> <circle cx="260" cy="295" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p01" data-tip="R02·1 Influence of abnormal hip mechanics" style="pointer-events:all;"/>
+        <!-- 2 ~(240,258) --> <circle cx="240" cy="258" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p02" data-tip="R02·2 PF pain – Consensus statement 4th Retreat" style="pointer-events:all;"/>
+        <!-- 3 ~(218,235) --> <circle cx="218" cy="235" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p03" data-tip="R02·3 Patellofemoral pain syndrome" style="pointer-events:all;"/>
+        <!-- 4 ~(235,210) --> <circle cx="235" cy="210" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p04" data-tip="R02·4 Management of PFPS" style="pointer-events:all;"/>
+        <!-- 5 ~(258,192) --> <circle cx="258" cy="192" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p05" data-tip="R02·5 Knee orthoses for PFPS (Cochrane)" style="pointer-events:all;"/>
+        <!-- 6 ~(278,172) --> <circle cx="278" cy="172" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p06" data-tip="R02·6 Biomechanical study tricompartmental brace" style="pointer-events:all;"/>
+        <!-- 7 ~(298,158) --> <circle cx="298" cy="158" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p07" data-tip="R02·7 PF pain: proximal, distal, and local factors" style="pointer-events:all;"/>
 
-        <!-- ═══ ROOTS ═══ -->
-        <g fill="none" stroke="#6B4226" stroke-linecap="round">
-          <path d="M430 450 Q380 455 330 465 Q290 472 250 478" stroke-width="8"/>
-          <path d="M430 450 Q460 455 500 462 Q540 468 580 474" stroke-width="8"/>
-          <path d="M430 450 Q420 462 400 472 Q378 480 355 485" stroke-width="7"/>
-          <path d="M430 450 Q445 462 460 470 Q480 478 500 482" stroke-width="7"/>
-          <path d="M430 450 Q415 468 395 478" stroke-width="5"/>
-          <path d="M430 450 Q448 468 470 476" stroke-width="5"/>
-          <path d="M330 465 Q310 470 290 476 Q270 482 245 486" stroke-width="5"/>
-          <path d="M500 462 Q525 468 550 473 Q575 478 600 482" stroke-width="5"/>
-          <path d="M250 478 Q230 482 210 486" stroke-width="4"/>
-          <path d="M580 474 Q605 478 625 482" stroke-width="4"/>
-        </g>
+        <!-- ===== RAMA 03 leaf numbers (blue) ===== -->
+        <!-- 1 ~(322,148) --> <circle cx="322" cy="148" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p01" data-tip="R03·1 OpenSim: open-source software" style="pointer-events:all;"/>
+        <!-- 2 ~(348,140) --> <circle cx="348" cy="140" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p02" data-tip="R03·2 OpenSim: musculoskeletal modeling framework" style="pointer-events:all;"/>
+        <!-- 3 ~(372,132) --> <circle cx="372" cy="132" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p03" data-tip="R03·3 Grand challenge competition – CAMS-Knee" style="pointer-events:all;"/>
+        <!-- 4 ~(394,145) --> <circle cx="394" cy="145" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p04" data-tip="R03·4 Accuracy of musculoskeletal simulation during squats" style="pointer-events:all;"/>
+        <!-- 5 ~(415,158) --> <circle cx="415" cy="158" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p05" data-tip="R03·5 Multibody simulation – patellar component design TKA" style="pointer-events:all;"/>
+        <!-- 6 ~(432,172) --> <circle cx="432" cy="172" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p06" data-tip="R03·6 Automated creation of personalised muscle paths" style="pointer-events:all;"/>
+        <!-- 7 ~(445,190) --> <circle cx="445" cy="190" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p07" data-tip="R03·7 Multibody dynamics-based modeling – systematic review" style="pointer-events:all;"/>
+        <!-- 8 ~(455,210) --> <circle cx="455" cy="210" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p08" data-tip="R03·8 Model-based estimation of muscle forces" style="pointer-events:all;"/>
 
-        <!-- ═══ TRUNK ═══ -->
-        <path d="M418 450 Q414 380 420 310 Q424 270 422 240" fill="none" stroke="#6B4226" stroke-width="26" stroke-linecap="round"/>
-        <path d="M442 450 Q446 380 440 310 Q436 270 438 240" fill="none" stroke="#8B5E3C" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+        <!-- ===== RAMA 04 leaf numbers (gold) ===== -->
+        <!-- 1 ~(490,245) --> <circle cx="490" cy="245" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p01" data-tip="R04·1 Polycentric exoprosthetic knee joints" style="pointer-events:all;"/>
+        <!-- 2 ~(498,275) --> <circle cx="498" cy="275" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p02" data-tip="R04·2 Kinematic assessment novel polycentric knee" style="pointer-events:all;"/>
+        <!-- 3 ~(500,305) --> <circle cx="500" cy="305" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p03" data-tip="R04·3 Adjustable polycentric mechanism – CIR" style="pointer-events:all;"/>
+        <!-- 4 ~(496,338) --> <circle cx="496" cy="338" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p04" data-tip="R04·4 Knee joint prototype based on cam mechanism" style="pointer-events:all;"/>
+        <!-- 5 ~(482,365) --> <circle cx="482" cy="365" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p05" data-tip="R04·5 Development of four-bar polycentric knee joint" style="pointer-events:all;"/>
 
-        <!-- ═══ MAIN BRANCHES ═══ -->
-        <!-- Branch 1 — far left (lavanda) -->
-        <path d="M422 300 Q380 260 310 220 Q260 188 200 165" fill="none" stroke="#8B6DB0" stroke-width="10" stroke-linecap="round"/>
-        <path d="M200 165 Q175 155 150 148 Q125 142 100 138" fill="none" stroke="#8B6DB0" stroke-width="7" stroke-linecap="round"/>
-        <!-- Branch 2 — left (terracota) -->
-        <path d="M425 280 Q400 245 370 218 Q340 194 305 178" fill="none" stroke="#B86058" stroke-width="9" stroke-linecap="round"/>
-        <path d="M305 178 Q285 168 262 160 Q240 153 215 148" fill="none" stroke="#B86058" stroke-width="6" stroke-linecap="round"/>
-        <!-- Branch 3 — center top (azul) -->
-        <path d="M430 240 Q430 200 430 165 Q430 140 430 115" fill="none" stroke="#4A9AB8" stroke-width="11" stroke-linecap="round"/>
-        <path d="M430 115 Q430 95 430 75" fill="none" stroke="#4A9AB8" stroke-width="8" stroke-linecap="round"/>
-        <!-- Branch 4 — right (ambar) -->
-        <path d="M435 280 Q460 245 490 218 Q520 194 555 178" fill="none" stroke="#C8A84A" stroke-width="9" stroke-linecap="round"/>
-        <path d="M555 178 Q575 168 598 160 Q620 153 645 148" fill="none" stroke="#C8A84A" stroke-width="6" stroke-linecap="round"/>
-        <!-- Branch 5 — far right (verde) -->
-        <path d="M438 300 Q480 260 550 220 Q600 188 660 165" fill="none" stroke="#4EB888" stroke-width="10" stroke-linecap="round"/>
-        <path d="M660 165 Q685 155 710 148 Q735 142 760 138" fill="none" stroke="#4EB888" stroke-width="7" stroke-linecap="round"/>
-
-        <!-- ═══ SUB-BRANCHES ═══ -->
-        <path d="M200 165 Q185 140 165 120" fill="none" stroke="#8B6DB0" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M150 148 Q135 125 120 105" fill="none" stroke="#8B6DB0" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-        <path d="M305 178 Q295 155 280 132" fill="none" stroke="#B86058" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M215 148 Q200 128 188 108" fill="none" stroke="#B86058" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-        <path d="M430 75 Q405 55 380 40" fill="none" stroke="#4A9AB8" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M430 75 Q455 55 480 40" fill="none" stroke="#4A9AB8" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M555 178 Q565 155 580 132" fill="none" stroke="#C8A84A" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M645 148 Q660 128 672 108" fill="none" stroke="#C8A84A" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-        <path d="M660 165 Q675 140 695 120" fill="none" stroke="#4EB888" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
-        <path d="M760 138 Q775 115 788 95" fill="none" stroke="#4EB888" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
-
-        <!-- ═══ FOLIAGE CLOUDS ═══ -->
-        <!-- Branch 1 cloud (lavanda) -->
-        <ellipse cx="155" cy="110" rx="80" ry="60" fill="#C5BCE8" opacity="0.45"/>
-        <ellipse cx="105" cy="95" rx="60" ry="48" fill="#B5A8E0" opacity="0.5"/>
-        <ellipse cx="70" cy="115" rx="50" ry="40" fill="#C5BCE8" opacity="0.4"/>
-        <ellipse cx="130" cy="80" rx="55" ry="42" fill="#D0C8F0" opacity="0.4"/>
-        <ellipse cx="180" cy="88" rx="50" ry="38" fill="#B5A8E0" opacity="0.38"/>
-        <!-- Branch 2 cloud (terracota) -->
-        <ellipse cx="265" cy="112" rx="75" ry="58" fill="#E8B8B6" opacity="0.45"/>
-        <ellipse cx="215" cy="97" rx="58" ry="46" fill="#DFA0A0" opacity="0.5"/>
-        <ellipse cx="185" cy="118" rx="48" ry="38" fill="#E8B8B6" opacity="0.4"/>
-        <ellipse cx="240" cy="82" rx="52" ry="40" fill="#F0C8C8" opacity="0.4"/>
-        <ellipse cx="295" cy="88" rx="48" ry="36" fill="#DFA0A0" opacity="0.38"/>
-        <!-- Branch 3 cloud (azul) -->
-        <ellipse cx="430" cy="45" rx="85" ry="62" fill="#9FD4E8" opacity="0.45"/>
-        <ellipse cx="380" cy="52" rx="62" ry="50" fill="#8AC8DF" opacity="0.5"/>
-        <ellipse cx="480" cy="52" rx="62" ry="50" fill="#8AC8DF" opacity="0.5"/>
-        <ellipse cx="355" cy="35" rx="50" ry="38" fill="#BADEEE" opacity="0.4"/>
-        <ellipse cx="505" cy="35" rx="50" ry="38" fill="#BADEEE" opacity="0.4"/>
-        <ellipse cx="430" cy="20" rx="68" ry="45" fill="#9FD4E8" opacity="0.38"/>
-        <!-- Branch 4 cloud (ambar) -->
-        <ellipse cx="595" cy="112" rx="75" ry="58" fill="#E8D490" opacity="0.45"/>
-        <ellipse cx="645" cy="97" rx="58" ry="46" fill="#D4AA55" opacity="0.5"/>
-        <ellipse cx="675" cy="118" rx="48" ry="38" fill="#E8D490" opacity="0.4"/>
-        <ellipse cx="620" cy="82" rx="52" ry="40" fill="#F0E0A8" opacity="0.4"/>
-        <ellipse cx="565" cy="88" rx="48" ry="36" fill="#D4AA55" opacity="0.38"/>
-        <!-- Branch 5 cloud (verde) -->
-        <ellipse cx="705" cy="110" rx="80" ry="60" fill="#95D8B8" opacity="0.45"/>
-        <ellipse cx="755" cy="95" rx="60" ry="48" fill="#7DC4A0" opacity="0.5"/>
-        <ellipse cx="790" cy="115" rx="50" ry="40" fill="#95D8B8" opacity="0.4"/>
-        <ellipse cx="730" cy="80" rx="55" ry="42" fill="#B0E0C8" opacity="0.4"/>
-        <ellipse cx="680" cy="88" rx="50" ry="38" fill="#7DC4A0" opacity="0.38"/>
-
-        <!-- ═══ BRANCH LABEL BADGES ═══ -->
-        <!-- B1 -->
-        <rect x="62" y="148" width="90" height="22" rx="5" fill="#F0EDFB" stroke="#B5A8E0" stroke-width="1.2" opacity="0.97"/>
-        <text x="107" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8.5" font-weight="600" fill="#5B4BAA" class="branch-hit" data-b="0" style="cursor:pointer">RAMA 01</text>
-        <!-- B2 -->
-        <rect x="158" y="148" width="90" height="22" rx="5" fill="#FBF0EF" stroke="#DFA0A0" stroke-width="1.2" opacity="0.97"/>
-        <text x="203" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8.5" font-weight="600" fill="#9E3532" class="branch-hit" data-b="1" style="cursor:pointer">RAMA 02</text>
-        <!-- B3 -->
-        <rect x="385" y="148" width="90" height="22" rx="5" fill="#EDF6FB" stroke="#8AC8DF" stroke-width="1.2" opacity="0.97"/>
-        <text x="430" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8.5" font-weight="600" fill="#1F6E8C" class="branch-hit" data-b="2" style="cursor:pointer">RAMA 03</text>
-        <!-- B4 -->
-        <rect x="612" y="148" width="90" height="22" rx="5" fill="#FBF5E6" stroke="#D4AA55" stroke-width="1.2" opacity="0.97"/>
-        <text x="657" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8.5" font-weight="600" fill="#7A5C10" class="branch-hit" data-b="3" style="cursor:pointer">RAMA 04</text>
-        <!-- B5 -->
-        <rect x="708" y="148" width="90" height="22" rx="5" fill="#EBF7F2" stroke="#7DC4A0" stroke-width="1.2" opacity="0.97"/>
-        <text x="753" y="163" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8.5" font-weight="600" fill="#2A7A50" class="branch-hit" data-b="4" style="cursor:pointer">RAMA 05</text>
-
-        <!-- ═══ TRUNK CLICK ZONE ═══ -->
-        <rect x="408" y="245" width="46" height="195" rx="20" class="trunk-hit" id="trunk-hit"/>
-
-        <!-- ═══ ROOT CLICK ZONE ═══ -->
-        <ellipse cx="430" cy="465" rx="280" ry="38" class="root-hit" id="root-hit"/>
-        <text x="430" y="499" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="600" fill="#7A5C10" style="cursor:pointer" id="root-lbl">❧ Raíz — clic para ver la pregunta de investigación</text>
-
-        <!-- ═══ PAPER LEAVES ═══ (injected by JS) ═══ -->
-        <g id="leaves-layer"></g>
-
+        <!-- ===== RAMA 05 leaf numbers (green) ===== -->
+        <!-- 1 ~(445,385) --> <circle cx="445" cy="385" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p01" data-tip="R05·1 Design and prototyping active knee orthosis" style="pointer-events:all;"/>
+        <!-- 2 ~(430,415) --> <circle cx="430" cy="415" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p02" data-tip="R05·2 Empowering rehabilitation – low-cost 3D orthosis" style="pointer-events:all;"/>
+        <!-- 3 ~(428,445) --> <circle cx="428" cy="445" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p03" data-tip="R05·3 Digital workflow for bespoke orthoses" style="pointer-events:all;"/>
+        <!-- 4 ~(420,475) --> <circle cx="420" cy="475" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p04" data-tip="R05·4 Design and 3D printing – wrist-hand orthosis" style="pointer-events:all;"/>
+        <!-- 5 ~(398,490) --> <circle cx="398" cy="490" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis – low cost 3D" style="pointer-events:all;"/>
       </svg>
     </div>
 
-    <!-- TRUNK + ROOT nodes below tree -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin-top:-.5rem">
-      <div class="vline vlb"></div>
-      <div class="node-box trunk-box" id="trunk-box" onclick="showTrunk()" style="max-width:480px;width:100%">
-        <span class="ntag">Tronco — Hipótesis central</span>
-        <div class="ntitle">Una órtesis patelofemoral personalizada, optimizada mediante modelación multibody, reduce los momentos articulares patellofemorales sin generar restricciones en el ROM ni disminución en la activación del cuádriceps</div>
+    <!-- Legend below tree -->
+    <div class="legend" style="width:100%;max-width:620px;">
+      <h3>Ramas del árbol</h3>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama1)"></div> Rama 1 · Anatomía y Biomecánica PF</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama2)"></div> Rama 2 · SDPF y Tratamiento Conservador</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama3)"></div> Rama 3 · Modelación Biomecánica Computacional</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama4)"></div> Rama 4 · Articulación Policéntrica y CIR</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rama5)"></div> Rama 5 · Diseño Personalizado - Impresión 3D</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Info panel -->
+  <div class="info-panel" id="infoPanel">
+    <div class="placeholder" id="placeholder">
+      <div class="icon">🌿</div>
+      <p>Selecciona un elemento del árbol para explorar su contenido.<br><br>
+      <strong>①–⑤</strong> Ver lista de papers por rama<br>
+      <strong>Números de colores</strong> Ver detalle de cada paper<br>
+      <strong>💡</strong> Hipótesis central<br>
+      <strong>❓</strong> Pregunta de investigación</p>
+    </div>
+
+    <!-- ===== RAÍZ: Pregunta de Investigación ===== -->
+    <div class="card" id="pregunta">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--trunk)">Raíz</span>
+        <h2>Pregunta de Investigación</h2>
       </div>
-      <div class="vline vlt"></div>
-      <div class="node-box root-box" id="root-box" onclick="showRoot()" style="max-width:520px;width:100%">
-        <span class="ntag">❧ Raíz — Pregunta de investigación</span>
-        <div class="ntitle">¿Puede una órtesis patelofemoral personalizada reducir las cargas articulares estimadas sin alterar la cinemática natural ni la activación muscular del cuádriceps?</div>
-        <div class="nsub">Diseñada mediante modelación biomecánica computacional y articulación policéntrica anatómicamente alineada</div>
+      <div class="card-body">
+        <div class="field">
+          <div class="field-value" style="font-size:0.95rem;font-family:'Playfair Display',serif;line-height:1.7;color:#3a2010;">
+            ¿Puede una órtesis patelofemoral personalizada reducir las cargas articulares estimadas sin alterar la cinemática natural ni la activación muscular del cuádriceps?
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Contexto de diseño</div>
+          <div class="field-value">Diseñada mediante modelación biomecánica computacional y articulación policéntrica anatómicamente alineada.</div>
+        </div>
       </div>
     </div>
 
-  </div><!-- end tree-col -->
-
-  <!-- RIGHT: INFO PANEL -->
-  <div class="info-col">
-    <div class="info-empty" id="info-empty">
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-        <ellipse cx="30" cy="20" rx="14" ry="18" fill="#C5BCE8" opacity=".6"/>
-        <ellipse cx="16" cy="26" rx="10" ry="13" fill="#E8B8B6" opacity=".6"/>
-        <ellipse cx="44" cy="26" rx="10" ry="13" fill="#8AC8DF" opacity=".6"/>
-        <ellipse cx="22" cy="11" rx="8" ry="10" fill="#F0E0A8" opacity=".6"/>
-        <ellipse cx="38" cy="11" rx="8" ry="10" fill="#95D8B8" opacity=".6"/>
-        <rect x="27" y="36" width="6" height="14" rx="3" fill="#8B5E3C"/>
-        <ellipse cx="30" cy="52" rx="11" ry="3.5" fill="#6B4226" opacity=".35"/>
-      </svg>
-      <p>Haz clic en una <strong>hoja</strong>, una <strong>rama</strong>, el <strong>tronco</strong> o la <strong>raíz</strong> del árbol para ver la información completa aquí</p>
+    <!-- ===== TRONCO: Hipótesis Central ===== -->
+    <div class="card" id="hipotesis">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--trunk)">Tronco</span>
+        <h2>Hipótesis Central</h2>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <div class="field-value" style="font-size:0.95rem;font-family:'Playfair Display',serif;line-height:1.7;color:#3a2010;">
+            Una órtesis patelofemoral personalizada, optimizada mediante modelación multibody, reduce los momentos articulares patellofemorales sin generar restricciones en el ROM ni disminución en la activación del cuádriceps.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="info-card" id="info-card"></div>
-  </div>
 
-</div><!-- end page-body -->
+    <!-- ===== RAMA 01 LIST ===== -->
+    <div class="card" id="rama01-list">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01</span>
+        <h2>Anatomía y Biomecánica Patelofemoral</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--subtext);margin-bottom:14px;">6 referencias · Haz clic en cada paper para ver el detalle</p>
+        <ul class="branch-list">
+          <li onclick="showCard('r01p01')">
+            <span class="num" style="background:var(--rama1)">1</span>
+            <div><div class="paper-title">Subject-specific evaluation of patellofemoral joint biomechanics during functional activity</div><div class="paper-authors">Akbarshahi M, Fernandez JW, Schache AG, Pandy MG</div></div>
+          </li>
+          <li onclick="showCard('r01p02')">
+            <span class="num" style="background:var(--rama1)">2</span>
+            <div><div class="paper-title">A computer model to simulate patellar biomechanics following total knee replacement</div><div class="paper-authors">Heegaard JH, Leyvraz PF, Hovey CB</div></div>
+          </li>
+          <li onclick="showCard('r01p03')">
+            <span class="num" style="background:var(--rama1)">3</span>
+            <div><div class="paper-title">In vivo patellofemoral contact mechanics during active extension using dynamic MRI</div><div class="paper-authors">Sheehan FT et al.</div></div>
+          </li>
+          <li onclick="showCard('r01p04')">
+            <span class="num" style="background:var(--rama1)">4</span>
+            <div><div class="paper-title">Combining advanced computational and imaging techniques to estimate patellofemoral joint stress during downhill gait</div><div class="paper-authors">Farrokhi S et al.</div></div>
+          </li>
+          <li onclick="showCard('r01p05')">
+            <span class="num" style="background:var(--rama1)">5</span>
+            <div><div class="paper-title">Patellofemoral mechanics: a review of pathomechanics and research approaches</div><div class="paper-authors">Fitzpatrick CK, Rullkoetter PJ</div></div>
+          </li>
+          <li onclick="showCard('r01p06')">
+            <span class="num" style="background:var(--rama1)">6</span>
+            <div><div class="paper-title">Knee muscle forces during walking and running in patellofemoral pain patients and pain-free controls</div><div class="paper-authors">Besier TF, Fredericson M, Gold GE, Beaupré GS, Delp SL</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-<!-- MODAL fallback -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal(null,true)">✕</button>
-    <div id="modal-inner"></div>
-  </div>
-</div>
+    <!-- ===== RAMA 02 LIST ===== -->
+    <div class="card" id="rama02-list">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02</span>
+        <h2>SDPF y Tratamiento Conservador</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--subtext);margin-bottom:14px;">7 referencias · Haz clic en cada paper para ver el detalle</p>
+        <ul class="branch-list">
+          <li onclick="showCard('r02p01')"><span class="num" style="background:var(--rama2)">1</span><div><div class="paper-title">The influence of abnormal hip mechanics on knee injury: a biomechanical perspective</div><div class="paper-authors">Powers CM</div></div></li>
+          <li onclick="showCard('r02p02')"><span class="num" style="background:var(--rama2)">2</span><div><div class="paper-title">Patellofemoral pain (Consensus statement — 4th International Research Retreat)</div><div class="paper-authors">Crossley KM, Callaghan MJ, van Linschoten R</div></div></li>
+          <li onclick="showCard('r02p03')"><span class="num" style="background:var(--rama2)">3</span><div><div class="paper-title">Patellofemoral pain syndrome</div><div class="paper-authors">Petersen W, Ellermann A, Gösele-Koppenburg A et al.</div></div></li>
+          <li onclick="showCard('r02p04')"><span class="num" style="background:var(--rama2)">4</span><div><div class="paper-title">Management of patellofemoral pain syndrome</div><div class="paper-authors">Dixit S, DiFiori JP, Burton M, Mines B</div></div></li>
+          <li onclick="showCard('r02p05')"><span class="num" style="background:var(--rama2)">5</span><div><div class="paper-title">Knee orthoses for treating patellofemoral pain syndrome (Cochrane Review)</div><div class="paper-authors">Callaghan MJ, Selfe J</div></div></li>
+          <li onclick="showCard('r02p06')"><span class="num" style="background:var(--rama2)">6</span><div><div class="paper-title">Biomechanical study of a tricompartmental unloader brace for patellofemoral or multicompartment knee osteoarthritis</div><div class="paper-authors">McGibbon CA et al.</div></div></li>
+          <li onclick="showCard('r02p07')"><span class="num" style="background:var(--rama2)">7</span><div><div class="paper-title">Patellofemoral pain: proximal, distal, and local factors — 2nd International Research Retreat</div><div class="paper-authors">Powers CM, Bolgla LA, Callaghan MJ, Collins N, Sheehan FT</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== RAMA 03 LIST ===== -->
+    <div class="card" id="rama03-list">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03</span>
+        <h2>Modelación Biomecánica Computacional</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--subtext);margin-bottom:14px;">8 referencias · Haz clic en cada paper para ver el detalle</p>
+        <ul class="branch-list">
+          <li onclick="showCard('r03p01')"><span class="num" style="background:var(--rama3)">1</span><div><div class="paper-title">OpenSim: open-source software to create and analyze dynamic simulations of movement</div><div class="paper-authors">Delp SL, Anderson FC, Arnold AS et al.</div></div></li>
+          <li onclick="showCard('r03p02')"><span class="num" style="background:var(--rama3)">2</span><div><div class="paper-title">OpenSim: a musculoskeletal modeling and simulation framework for in silico investigations and exchange</div><div class="paper-authors">Seth A, Sherman M, Reinbolt JA, Delp SL</div></div></li>
+          <li onclick="showCard('r03p03')"><span class="num" style="background:var(--rama3)">3</span><div><div class="paper-title">Grand challenge competition to predict in vivo knee loads (CAMS-Knee)</div><div class="paper-authors">Fregly BJ et al.</div></div></li>
+          <li onclick="showCard('r03p04')"><span class="num" style="background:var(--rama3)">4</span><div><div class="paper-title">Evaluation of the accuracy of musculoskeletal simulation during squats by means of instrumented knee prostheses</div><div class="paper-authors">Schellenberg F et al.</div></div></li>
+          <li onclick="showCard('r03p05')"><span class="num" style="background:var(--rama3)">5</span><div><div class="paper-title">Musculoskeletal multibody simulation analysis on the impact of patellar component design and positioning in TKA</div><div class="paper-authors">Becher C et al.</div></div></li>
+          <li onclick="showCard('r03p06')"><span class="num" style="background:var(--rama3)">6</span><div><div class="paper-title">Automated creation and tuning of personalised muscle paths for OpenSim musculoskeletal models of the knee joint</div><div class="paper-authors">Modenese L et al.</div></div></li>
+          <li onclick="showCard('r03p07')"><span class="num" style="background:var(--rama3)">7</span><div><div class="paper-title">Multibody dynamics-based musculoskeletal modeling for gait analysis: a systematic review</div><div class="paper-authors">Rasmussen J et al.</div></div></li>
+          <li onclick="showCard('r03p08')"><span class="num" style="background:var(--rama3)">8</span><div><div class="paper-title">Model-based estimation of muscle forces exerted during movements</div><div class="paper-authors">Erdemir A et al.</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== RAMA 04 LIST ===== -->
+    <div class="card" id="rama04-list">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04</span>
+        <h2>Articulación Policéntrica y CIR</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--subtext);margin-bottom:14px;">5 referencias · Haz clic en cada paper para ver el detalle</p>
+        <ul class="branch-list">
+          <li onclick="showCard('r04p01')"><span class="num" style="background:var(--rama4)">1</span><div><div class="paper-title">Polycentric exoprosthetic knee joints: extent of shortening during swing phase</div><div class="paper-authors">Köhler TM, Bellmann M, Blumentritt S</div></div></li>
+          <li onclick="showCard('r04p02')"><span class="num" style="background:var(--rama4)">2</span><div><div class="paper-title">Kinematic and kinetic assessment of a novel polycentric knee joint for powered walking assist exoskeletons</div><div class="paper-authors">Seguin E, Doumit M</div></div></li>
+          <li onclick="showCard('r04p03')"><span class="num" style="background:var(--rama4)">3</span><div><div class="paper-title">Adjustable polycentric mechanism for external knee joint prosthesis based on the instantaneous center of rotation</div><div class="paper-authors">Hidrobo S, Valencia F, Tobar L</div></div></li>
+          <li onclick="showCard('r04p04')"><span class="num" style="background:var(--rama4)">4</span><div><div class="paper-title">Knee joint prototype based on cam mechanism — design and video analysis</div><div class="paper-authors">Poliakov O et al.</div></div></li>
+          <li onclick="showCard('r04p05')"><span class="num" style="background:var(--rama4)">5</span><div><div class="paper-title">Development of four-bar polycentric knee joint with stance-phase knee flexion</div><div class="paper-authors">Wang X, Favre P, Jolles BM</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== RAMA 05 LIST ===== -->
+    <div class="card" id="rama05-list">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05</span>
+        <h2>Diseño Personalizado - Impresión 3D</h2>
+      </div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--subtext);margin-bottom:14px;">5 referencias · Haz clic en cada paper para ver el detalle</p>
+        <ul class="branch-list">
+          <li onclick="showCard('r05p01')"><span class="num" style="background:var(--rama5)">1</span><div><div class="paper-title">Design and prototyping of an active knee orthosis: a dynamic and mechanical study</div><div class="paper-authors">Sánchez-Angeles A, Capilla-González G, Núñez-Altamirano DA</div></div></li>
+          <li onclick="showCard('r05p02')"><span class="num" style="background:var(--rama5)">2</span><div><div class="paper-title">Empowering rehabilitation: design and structural analysis of a low-cost 3D-printed smart orthosis</div><div class="paper-authors">Pustan M et al.</div></div></li>
+          <li onclick="showCard('r05p03')"><span class="num" style="background:var(--rama5)">3</span><div><div class="paper-title">A digital workflow for design and fabrication of bespoke orthoses using 3D scanning and 3D printing</div><div class="paper-authors">Paterson AM et al.</div></div></li>
+          <li onclick="showCard('r05p04')"><span class="num" style="background:var(--rama5)">4</span><div><div class="paper-title">Design and 3D printing of a customised wrist-hand orthosis</div><div class="paper-authors">Cabás R et al.</div></div></li>
+          <li onclick="showCard('r05p05')"><span class="num" style="background:var(--rama5)">5</span><div><div class="paper-title">Design and development of a customised knee positioning orthosis using low cost 3D printers</div><div class="paper-authors">Santos S et al.</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== PAPER CARDS RAMA 01 ===== -->
+    <div class="card" id="r01p01">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 1</span>
+        <h2>Subject-specific evaluation of patellofemoral joint biomechanics during functional activity</h2>
+        <div class="authors">Akbarshahi M, Fernandez JW, Schache AG, Pandy MG</div>
+        <div class="journal">Medical Engineering &amp; Physics, 36(9), 1122–1133</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Imposibilidad de medir directamente in vivo las fuerzas de contacto cartilaginoso patelofemoral durante actividades funcionales.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un modelo sujeto-específico integrar MRI, fluoroscopía y captura de movimiento para cuantificar la mecánica de contacto PF durante el ascenso de escaleras?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">MRI de alta resolución + fluoroscopía dinámica in vivo + captura de movimiento 3D + modelo de elementos finitos deformable sujeto-específico.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r01p02">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 2</span>
+        <h2>A computer model to simulate patellar biomechanics following total knee replacement</h2>
+        <div class="authors">Heegaard JH, Leyvraz PF, Hovey CB</div>
+        <div class="journal">Clinical Biomechanics, 16(5), 415–423</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">El efecto del posicionamiento del componente patelar en TKR sobre la biomecánica APF no puede evaluarse experimentalmente para cada variación de diseño.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un modelo 3D de la APF post-TKR predecir el efecto de variaciones en el componente patelar sobre la cinemática y las fuerzas de contacto?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Modelo 3D de APF post-TKR (geometrías cadavéricas + ligamentos + cuádriceps) validado in vitro. Simulación de variaciones en grosor y posición del botón patelar.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r01p03">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 3</span>
+        <h2>In vivo patellofemoral contact mechanics during active extension using dynamic MRI</h2>
+        <div class="authors">Sheehan FT et al.</div>
+        <div class="journal">Journal of Biomechanics, 47(10), 2471–2481</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Limitación para cuantificar simultáneamente deformación del cartílago y cinemática PF in vivo durante movimiento activo.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede la MRI dinámica cuantificar no invasivamente la mecánica de contacto PF in vivo durante extensión activa en sujetos sanos?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">MRI 3T con secuencias especializadas a 0°–60° de flexión. Segmentación ósea y cartilaginosa. Cálculo de área de contacto, centroide y deformación.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r01p04">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 4</span>
+        <h2>Combining advanced computational and imaging techniques to estimate patellofemoral joint stress during downhill gait</h2>
+        <div class="authors">Farrokhi S et al.</div>
+        <div class="journal">Gait &amp; Posture, 84, 105–110</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Imposibilidad de medir directamente el estrés de contacto PF in vivo durante marcha en declive en pacientes con artrosis.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un marco computacional (fluoroscopía biplana + modelo de elemento discreto) discriminar perfiles de estrés PF entre pacientes con y sin artrosis?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Fluoroscopía biplana dinámica (cinemática in vivo) + TC (geometría individual) + modelos de elemento discreto (DEA). Comparación artrosis PF vs controles.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r01p05">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 5</span>
+        <h2>Patellofemoral mechanics: a review of pathomechanics and research approaches</h2>
+        <div class="authors">Fitzpatrick CK, Rullkoetter PJ</div>
+        <div class="journal">Current Reviews in Musculoskeletal Medicine, 13(3), 326–337</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Comprensión incompleta de los mecanismos biomecánicos que originan el dolor y la degeneración patelofemoral.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son los factores biomecánicos determinantes del SDPF y la artrosis PF, y qué enfoques metodológicos los investigan mejor?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión narrativa integradora de estudios in vitro, in vivo (MRI, fluoroscopía), análisis de movimiento 3D y modelación computacional.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r01p06">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 6</span>
+        <h2>Knee muscle forces during walking and running in patellofemoral pain patients and pain-free controls</h2>
+        <div class="authors">Besier TF, Fredericson M, Gold GE, Beaupré GS, Delp SL</div>
+        <div class="journal">Journal of Biomechanics, 42(7), 898–905</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Patrones alterados de activación muscular del cuádriceps en SDPF que generan mayor compresión PF no cuantificados mediante modelación.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Difieren las fuerzas musculares de rodilla entre pacientes con SDPF y controles durante marcha y carrera, según modelación musculoesquelética?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Captura de movimiento 3D + plataformas de fuerza + EMG. Estimación de fuerzas musculares individuales en OpenSim. Comparación SDPF vs controles.</div></div>
+      </div>
+    </div>
+
+    <!-- ===== PAPER CARDS RAMA 02 ===== -->
+    <div class="card" id="r02p01">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 1</span>
+        <h2>The influence of abnormal hip mechanics on knee injury: a biomechanical perspective</h2>
+        <div class="authors">Powers CM</div>
+        <div class="journal">J Orthop Sports Phys Ther, 40(2), 42–51</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">El SDPF se aborda localmente, ignorando el rol de la mecánica de cadera en cadena cinética cerrada.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿En qué medida la mecánica anormal de la cadera incrementa las demandas mecánicas sobre la APF?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión narrativa de estudios de análisis de movimiento 3D y modelación musculoesquelética en pacientes con SDPF vs controles.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p02">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 2</span>
+        <h2>Patellofemoral pain (Consensus statement — 4th International Research Retreat)</h2>
+        <div class="authors">Crossley KM, Callaghan MJ, van Linschoten R</div>
+        <div class="journal">British Journal of Sports Medicine, 50(4), 247–250</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Falta de consenso internacional en la definición, diagnóstico y manejo del dolor patelofemoral.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son las recomendaciones basadas en evidencia para el SDPF derivadas de la 4ª Reunión Internacional de Investigación?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Consenso de expertos internacionales basado en revisión sistemática de la evidencia disponible.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p03">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 3</span>
+        <h2>Patellofemoral pain syndrome</h2>
+        <div class="authors">Petersen W, Ellermann A, Gösele-Koppenburg A et al.</div>
+        <div class="journal">Knee Surg Sports Traumatol Arthrosc, 22(10), 2264–2274</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Etiología multifactorial del SDPF sin clasificación universalmente aceptada ni guías estandarizadas de tratamiento.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son los factores etiopatogénicos, criterios diagnósticos y opciones de tratamiento conservador con mayor evidencia para el SDPF?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión narrativa exhaustiva de ECA, revisiones sistemáticas y estudios de cohorte en PubMed, Cochrane y EMBASE hasta 2013.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p04">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 4</span>
+        <h2>Management of patellofemoral pain syndrome</h2>
+        <div class="authors">Dixit S, DiFiori JP, Burton M, Mines B</div>
+        <div class="journal">American Family Physician, 75(2), 194–202</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Variabilidad en las estrategias diagnósticas y terapéuticas del SDPF en atención primaria.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son las estrategias diagnósticas y terapéuticas con mayor evidencia para el manejo del SDPF en atención primaria?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión de literatura médica hasta 2006 con evaluación del nivel de evidencia según criterios SORT.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p05">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 5</span>
+        <h2>Knee orthoses for treating patellofemoral pain syndrome (Cochrane Review)</h2>
+        <div class="authors">Callaghan MJ, Selfe J</div>
+        <div class="journal">Cochrane Database of Systematic Reviews, (1), CD010513</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Evidencia limitada y heterogénea sobre la eficacia clínica de las órtesis de rodilla para el SDPF.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Son las órtesis de rodilla más efectivas que ningún tratamiento o el placebo para reducir el dolor y mejorar la función en SDPF?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Búsqueda sistemática de ECA en Cochrane Central, MEDLINE, EMBASE, CINAHL y registros de ensayos.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p06">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 6</span>
+        <h2>Biomechanical study of a tricompartmental unloader brace for patellofemoral or multicompartment knee osteoarthritis</h2>
+        <div class="authors">McGibbon CA et al.</div>
+        <div class="journal">Frontiers in Bioengineering and Biotechnology, 8, 604860</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Ausencia de cuantificación biomecánica del efecto de órtesis tricompartamentales sobre las cargas articulares internas durante sentadilla.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un modelo sagital de rodilla cuantificar el efecto de diferentes configuraciones de una órtesis tricompartamental sobre las cargas PF y TF durante sentadilla profunda?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Modelo sagital 2D de rodilla (APF + TF + ligamentos). Fuerza ortésica introducida como momento externo FB con brazo rB. Validado contra análisis de movimiento 3D.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r02p07">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 7</span>
+        <h2>Patellofemoral pain: proximal, distal, and local factors — 2nd International Research Retreat</h2>
+        <div class="authors">Powers CM, Bolgla LA, Callaghan MJ, Collins N, Sheehan FT</div>
+        <div class="journal">J Orthop Sports Phys Ther, 42(6), A1–A54</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Comprensión fragmentada del dolor PF desde perspectivas locales, proximales y distales sin consenso integrador.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuál es la evidencia sobre factores biomecánicos proximales, distales y locales del dolor PF y qué intervenciones tienen respaldo científico?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Consenso de expertos de la 2ª Reunión Internacional de Investigación sobre Dolor PF (2011).</div></div>
+      </div>
+    </div>
+
+    <!-- ===== PAPER CARDS RAMA 03 ===== -->
+    <div class="card" id="r03p01">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 1</span>
+        <h2>OpenSim: open-source software to create and analyze dynamic simulations of movement</h2>
+        <div class="authors">Delp SL, Anderson FC, Arnold AS et al.</div>
+        <div class="journal">IEEE Transactions on Biomedical Engineering, 54(11), 1940–1950</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Falta de plataformas de código abierto accesibles para la construcción y análisis de modelos musculoesqueléticos dinámicos.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede una plataforma de software de código abierto permitir a investigadores construir, personalizar y analizar modelos musculoesqueléticos de forma accesible y reproducible?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Descripción de la arquitectura de OpenSim (librería Simbody, actuadores Hill, contacto compliant, CMC). Validación de predicciones contra datos experimentales de marcha y carrera.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p02">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 2</span>
+        <h2>OpenSim: a musculoskeletal modeling and simulation framework for in silico investigations and exchange</h2>
+        <div class="authors">Seth A, Sherman M, Reinbolt JA, Delp SL</div>
+        <div class="journal">Procedia IUTAM, 2, 212–232</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Modelos computacionales de alto valor científico raramente compartidos, limitando reproducibilidad.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cómo puede una arquitectura de software modular y abierta facilitar el desarrollo, validación e intercambio de modelos musculoesqueléticos?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Descripción de la arquitectura modular de OpenSim (Simbody), capacidades de simulación dinámica directa, predicción de movimiento y optimización.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p03">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 3</span>
+        <h2>Grand challenge competition to predict in vivo knee loads (CAMS-Knee)</h2>
+        <div class="authors">Fregly BJ et al.</div>
+        <div class="journal">Journal of Orthopaedic Research, 30(4), 503–513</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Falta de datos in vivo de fuerzas de contacto articular de rodilla para validar modelos musculoesqueléticos computacionales.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Pueden los modelos musculoesqueléticos actuales predecir las fuerzas de contacto in vivo medidas directamente mediante prótesis instrumentadas?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Competición científica: múltiples equipos predicen fuerzas de contacto de rodilla de un paciente con prótesis instrumentada (Orthoload) usando datos de análisis de movimiento.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p04">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 4</span>
+        <h2>Evaluation of the accuracy of musculoskeletal simulation during squats by means of instrumented knee prostheses</h2>
+        <div class="authors">Schellenberg F et al.</div>
+        <div class="journal">Medical Engineering &amp; Physics, 60, 95–103</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Capacidad predictiva desconocida del modelo Gait2392 de OpenSim para la sentadilla.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Con qué precisión predice Gait2392 las fuerzas de contacto tibiofemoral in vivo durante la sentadilla en pacientes con prótesis instrumentadas?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Datos CAMS-Knee procesados en OpenSim con Gait2392 escalado. Comparación predicciones vs mediciones directas de prótesis instrumentadas.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p05">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 5</span>
+        <h2>Musculoskeletal multibody simulation analysis on the impact of patellar component design and positioning in TKA</h2>
+        <div class="authors">Becher C et al.</div>
+        <div class="journal">Applied Sciences, 10(7), 2365</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Efecto de variaciones en el componente patelar de TKR sobre la dinámica APF no evaluable experimentalmente.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cómo afectan variaciones en el diseño y posicionamiento del componente patelar a las fuerzas de contacto y cinemática de la APF post-TKR?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Modelo MMBS de rodilla post-TKR personalizado. Simulación de variaciones en grosor (+2, 0, -2 mm) y posición mediolateral durante sentadilla profunda.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p06">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 6</span>
+        <h2>Automated creation and tuning of personalised muscle paths for OpenSim musculoskeletal models of the knee joint</h2>
+        <div class="authors">Modenese L et al.</div>
+        <div class="journal">Biomechanics and Modeling in Mechanobiology, 20, 521–533</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Los modelos genéricos de rodilla en OpenSim usan geometrías estándar que difieren de la anatomía individual.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Es posible automatizar la creación de modelos de rodilla en OpenSim con geometrías y vías musculares específicos al sujeto?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Pipeline automatizado: segmentación MRI → morfing poblacional → ajuste automático de parámetros musculotendinosos.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p07">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 7</span>
+        <h2>Multibody dynamics-based musculoskeletal modeling for gait analysis: a systematic review</h2>
+        <div class="authors">Rasmussen J et al.</div>
+        <div class="journal">Journal of NeuroEngineering and Rehabilitation, 21, 178</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Diversidad de plataformas y metodologías de modelación dificulta la comparación de resultados.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son las plataformas más usadas para el análisis de marcha y cuáles son sus fortalezas y limitaciones?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión sistemática PRISMA. Comparación OpenSim vs AnyBody (TLEM 2.0).</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r03p08">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 8</span>
+        <h2>Model-based estimation of muscle forces exerted during movements</h2>
+        <div class="authors">Erdemir A et al.</div>
+        <div class="journal">Clinical Biomechanics, 22(2), 131–154</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">El problema de redundancia muscular impide determinar directamente fuerzas musculares individuales durante el movimiento.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Cuáles son los métodos disponibles para estimar fuerzas musculares mediante modelos?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Revisión crítica de métodos: optimización estática, dinámica, EMG-driven y reducción.</div></div>
+      </div>
+    </div>
+
+    <!-- ===== PAPER CARDS RAMA 04 ===== -->
+    <div class="card" id="r04p01">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 1</span>
+        <h2>Polycentric exoprosthetic knee joints: extent of shortening during swing phase</h2>
+        <div class="authors">Köhler TM, Bellmann M, Blumentritt S</div>
+        <div class="journal">Prosthetics and Orthotics International</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Comparación cuantitativa del acortamiento geométrico durante el balanceo entre diferentes diseños policéntricos.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿En qué medida difieren los diseños policéntricos de prótesis de rodilla en el grado de acortamiento durante balanceo?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Análisis de 11 prótesis policéntricas comerciales. Cálculo de la trayectoria del CIR y acortamiento geométrico durante el balanceo.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r04p02">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 2</span>
+        <h2>Kinematic and kinetic assessment of a novel polycentric knee joint for powered walking assist exoskeletons</h2>
+        <div class="authors">Seguin E, Doumit M</div>
+        <div class="journal">Scientific Archives</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Las bisagras monocéntricas en exoesqueletos generan fuerzas de pistoning que reducen el confort y alteran la cinemática natural.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un mecanismo policéntrico con pin alineado al CIR biológico reducir las fuerzas de reacción parasíticas en la interfaz dispositivo-usuario?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Mecanismo pin-in-slot con 3 pines (uno alineado al CIR biológico), rango 0°–120°. Evaluación con captura de movimiento + sensores de fuerza.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r04p03">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 3</span>
+        <h2>Adjustable polycentric mechanism for external knee joint prosthesis based on the instantaneous center of rotation</h2>
+        <div class="authors">Hidrobo S, Valencia F, Tobar L</div>
+        <div class="journal">Lecture Notes in Networks and Systems, 903. Springer, Cham</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">El error de aproximación de mecanismos de cuatro barras a la trayectoria biológica del CIR carece de métrica cuantitativa estandarizada.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un mecanismo ajustable de cuatro barras aproximar la trayectoria del CIR biológico con error mínimo usando la distancia de Fréchet como métrica?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">CIR de referencia a partir de datos experimentales. Síntesis de cuatro barras minimizando distancia de Fréchet. Validación CAD + prototipo 3D.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r04p04">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 4</span>
+        <h2>Knee joint prototype based on cam mechanism — design and video analysis</h2>
+        <div class="authors">Poliakov O et al.</div>
+        <div class="journal">Computer Methods in Biomechanics and Biomedical Engineering, 26(11), 1305–1318</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Los mecanismos de cuatro barras ofrecen aproximación limitada a la trayectoria real del CIR biológico en todos los ángulos.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un mecanismo de leva basado en los centroides cinemáticos de la rodilla replicar con mayor fidelidad el movimiento policéntrico?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Centroides fija y móvil del CIR biológico determinadas de la literatura. Perfiles de leva diseñados a partir de centroides. CAD + análisis cinemático. Prototipo 3D + MATLAB.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r04p05">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 5</span>
+        <h2>Development of four-bar polycentric knee joint with stance-phase knee flexion</h2>
+        <div class="authors">Wang X, Favre P, Jolles BM</div>
+        <div class="journal">Scientific Reports, 13, 22680</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Prótesis policéntricas convencionales estabilizan la rodilla en apoyo impidiendo la flexión fisiológica durante esta fase.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un mecanismo de cuatro barras con CIR reposicionado permitir flexión de rodilla en apoyo, aproximando la marcha protésica a la bípeda normal?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Optimización paramétrica del mecanismo de cuatro barras para ubicar el CIR frente al vector de reacción del suelo. Prototipo en prótesis transfemoral.</div></div>
+      </div>
+    </div>
+
+    <!-- ===== PAPER CARDS RAMA 05 ===== -->
+    <div class="card" id="r05p01">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 1</span>
+        <h2>Design and prototyping of an active knee orthosis: a dynamic and mechanical study</h2>
+        <div class="authors">Sánchez-Angeles A, Capilla-González G, Núñez-Altamirano DA</div>
+        <div class="journal">Journal of Mechanical Science and Technology</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Falta de flujos de trabajo documentados para órtesis activas de rodilla personalizadas con análisis dinámico y mecánico completo.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Es posible diseñar y prototipar una órtesis activa de rodilla mediante escaneo 3D y manufactura aditiva con análisis dinámico y mecánico del ensamble?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Escaneo 3D del miembro inferior. CAD por ingeniería inversa. Análisis dinámico del mecanismo. FEA. Fabricación FDM con PLA/PETG. Pruebas funcionales.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r05p02">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 2</span>
+        <h2>Empowering rehabilitation: design and structural analysis of a low-cost 3D-printed smart orthosis</h2>
+        <div class="authors">Pustan M et al.</div>
+        <div class="journal">Polymers, 16(10), 1303</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Costo elevado de órtesis personalizadas convencionales limita el acceso.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un flujo de trabajo de bajo costo (escaneo 3D + CAD + FEA + FDM) producir una órtesis de rodilla con propiedades mecánicas adecuadas en rPET y PLA?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Escaneo 3D de la rodilla del paciente. CAD por ingeniería inversa. Simulación cinemática 3D. FEA de flexión para rPET y PLA. Fabricación FDM.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r05p03">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 3</span>
+        <h2>A digital workflow for design and fabrication of bespoke orthoses using 3D scanning and 3D printing</h2>
+        <div class="authors">Paterson AM et al.</div>
+        <div class="journal">Scientific Reports, 10, 7028</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Fabricación artesanal de órtesis personalizadas: intensiva en trabajo, alta variabilidad y tiempos prolongados.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un flujo de trabajo digital completo (escaneo 3D → CAD → FEA → impresión 3D) producir órtesis personalizadas con calidad clínica?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Escaneo 3D (Artec Eva, desviación &lt;0.1 mm). Algoritmos de relajación de geometría + superficies mínimas. FEA. Fabricación FDM con nylon PA12.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r05p04">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 4</span>
+        <h2>Design and 3D printing of a customised wrist-hand orthosis</h2>
+        <div class="authors">Cabás R et al.</div>
+        <div class="journal">Progress in Additive Manufacturing</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Fabricación convencional de órtesis de muñeca-mano: costosa, laboriosa y dependiente de expertise artesanal.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede un flujo integral (escaneo 3D → CAD → FEM → FDM con PLA) producir una órtesis personalizada con propiedades mecánicas adecuadas?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Escaneo 3D. CAD por ingeniería inversa con patrones de ventilación y zonas de refuerzo. FEA (estrés Von Mises). Fabricación FDM con PLA.</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="r05p05">
+      <div class="card-header">
+        <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 5</span>
+        <h2>Design and development of a customised knee positioning orthosis using low cost 3D printers</h2>
+        <div class="authors">Santos S et al.</div>
+        <div class="journal">Virtual and Physical Prototyping, 12(4), 322–332</div>
+      </div>
+      <div class="card-body">
+        <div class="field"><div class="field-label">Problema</div><div class="field-value">Órtesis de posicionamiento de rodilla personalizadas para parálisis cerebral: costosas y de acceso limitado.</div></div>
+        <div class="field"><div class="field-label">Pregunta de investigación</div><div class="field-value">¿Puede diseñarse una órtesis de posicionamiento de rodilla personalizada mediante escaneo 3D e impresoras 3D de bajo costo?</div></div>
+        <div class="field"><div class="field-label">Metodología</div><div class="field-value">Escaneo 3D del miembro inferior. Diseño iterativo de 4 conceptos en CAD. Fabricación FDM con PLA. Evaluación clínica con fisioterapia y familia.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /info-panel -->
+</div><!-- /main-layout -->
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip"></div>
 
 <script>
-// ═══════════════════════
-// DATA
-// ═══════════════════════
-const BC=[
-  {c:'#5B4BAA',bg:'#F0EDFB',bd:'#B5A8E0',lf:'#C5BCE8',dk:'#4B3B9A',name:'Biomecánica PF',title:'Anatomía y Biomecánica Patelofemoral'},
-  {c:'#9E3532',bg:'#FBF0EF',bd:'#DFA0A0',lf:'#E8B8B6',dk:'#8E2522',name:'SDPF / Tratamiento',title:'SDPF y Tratamiento Conservador'},
-  {c:'#1F6E8C',bg:'#EDF6FB',bd:'#8AC8DF',lf:'#9FD4E8',dk:'#0F5E7C',name:'Modelación Computacional',title:'Modelación Biomecánica Computacional'},
-  {c:'#7A5C10',bg:'#FBF5E6',bd:'#D4AA55',lf:'#E8D490',dk:'#6A4C00',name:'Policéntrico / CIR',title:'Articulación Policéntrica y CIR'},
-  {c:'#2A7A50',bg:'#EBF7F2',bd:'#7DC4A0',lf:'#95D8B8',dk:'#1A6A40',name:'Diseño / 3D',title:'Diseño Personalizado y Manufactura Aditiva'},
-];
+// ── Load SVG ──
+fetch('/mnt/user-data/uploads/svg_arbol.svg')
+  .catch(() => null);
 
-const papers=[
-  {id:1,branch:1,star:true,title:"Subject-specific evaluation of patellofemoral joint biomechanics during functional activity",authors:"Akbarshahi M, Fernandez JW, Schache AG, Pandy MG",year:2025,journal:"Medical Engineering & Physics, 36(9), 1122–1133",problem:"Imposibilidad de medir directamente in vivo las fuerzas de contacto cartilaginoso patelofemoral durante actividades funcionales.",question:"¿Puede un modelo sujeto-específico integrar MRI, fluoroscopía y captura de movimiento para cuantificar la mecánica de contacto PF durante el ascenso de escaleras?",method:"MRI de alta resolución + fluoroscopía dinámica in vivo + captura de movimiento 3D + modelo de elementos finitos deformable sujeto-específico.",results:"Fuerzas de contacto en facete lateral 4–6× superiores al medial durante escaleras. Estrés pico: 8.2 ± 1.0 MPa lateral y 5.9 ± 1.3 MPa medial.",conclusion:"Establece los valores de referencia de carga PF para la evaluación de intervenciones de descarga articular, incluyendo la órtesis propuesta en la tesis.",keywords:["articulación patelofemoral","modelo sujeto-específico","FEA","fluoroscopía biplana","fuerzas de contacto","cartílago","escaleras"]},
-  {id:2,branch:2,star:false,title:"The influence of abnormal hip mechanics on knee injury: a biomechanical perspective",authors:"Powers CM",year:2010,journal:"J Orthop Sports Phys Ther, 40(2), 42–51",problem:"El SDPF se aborda localmente, ignorando el rol de la mecánica de cadera en cadena cinética cerrada.",question:"¿En qué medida la mecánica anormal de la cadera incrementa las demandas mecánicas sobre la APF?",method:"Revisión narrativa de estudios de análisis de movimiento 3D y modelación musculoesquelética en pacientes con SDPF vs controles.",results:"Debilidad de abductores y rotadores externos de cadera → mayor aducción y rotación interna femoral → ángulo Q funcional aumentado → maltracking patelar lateral.",conclusion:"Una órtesis PF efectiva debe considerar la cadena cinética completa, no únicamente la articulación patelofemoral aislada.",keywords:["cadera","cadena cinética","ángulo Q funcional","aducción femoral","SDPF","VMO","biomecánica proximal"]},
-  {id:3,branch:2,star:false,title:"Patellofemoral pain (Consensus statement — 4th International Research Retreat)",authors:"Crossley KM, Callaghan MJ, van Linschoten R",year:2016,journal:"British Journal of Sports Medicine, 50(4), 247–250",problem:"Falta de consenso internacional en la definición, diagnóstico y manejo del dolor patelofemoral.",question:"¿Cuáles son las recomendaciones basadas en evidencia para el SDPF derivadas de la 4ª Reunión Internacional de Investigación?",method:"Consenso de expertos internacionales basado en revisión sistemática de la evidencia disponible.",results:"Prevalencia 11–17% en consultas de rodilla. Tratamiento con mayor evidencia: ejercicio combinado cuádriceps + cadera. Pronóstico desfavorable a largo plazo (40% persiste a 5 años).",conclusion:"El pronóstico desfavorable y el riesgo de artrosis PF justifican el desarrollo de intervenciones biomecánicas personalizadas como la órtesis propuesta.",keywords:["consenso internacional","SDPF","dolor patelofemoral","epidemiología","tratamiento conservador","pronóstico","artrosis PF"]},
-  {id:4,branch:1,star:false,title:"A computer model to simulate patellar biomechanics following total knee replacement",authors:"Heegaard JH, Leyvraz PF, Hovey CB",year:2001,journal:"Clinical Biomechanics, 16(5), 415–423",problem:"El efecto del posicionamiento del componente patelar en TKR sobre la biomecánica APF no puede evaluarse experimentalmente para cada variación de diseño.",question:"¿Puede un modelo 3D de la APF post-TKR predecir el efecto de variaciones en el componente patelar sobre la cinemática y las fuerzas de contacto?",method:"Modelo 3D de APF post-TKR (geometrías cadavéricas + ligamentos + cuádriceps) validado in vitro. Simulación de variaciones en grosor y posición del botón patelar.",results:"+2 mm de grosor → +27% fuerzas de contacto PF. Posicionamiento mediolateral → afecta traslación patelar hasta 8%. Efecto máximo entre 30–90° de flexión.",conclusion:"Valida el uso de simulaciones multibody para evaluar el efecto de perturbaciones externas sobre la dinámica PF — fundamento metodológico de la tesis.",keywords:["TKR","componente patelar","modelo 3D","fuerzas de contacto","grosor patelar","cinemática patelar","validación in vitro"]},
-  {id:5,branch:1,star:false,title:"In vivo patellofemoral contact mechanics during active extension using dynamic MRI",authors:"Sheehan FT et al.",year:2014,journal:"Journal of Biomechanics, 47(10), 2471–2481",problem:"Limitación para cuantificar simultáneamente deformación del cartílago y cinemática PF in vivo durante movimiento activo.",question:"¿Puede la MRI dinámica cuantificar no invasivamente la mecánica de contacto PF in vivo durante extensión activa en sujetos sanos?",method:"MRI 3T con secuencias especializadas a 0°–60° de flexión. Segmentación ósea y cartilaginosa. Cálculo de área de contacto, centroide y deformación.",results:"Centroide de contacto migra de proximal-lateral (extensión) a distal-medial (flexión). Área de contacto: 2.8 cm² a 20° → 5.4 cm² a 60°. Deformaciones máximas en facete lateral.",conclusion:"Base de datos normativa in vivo esencial para validación de modelos computacionales y definición del estado de referencia sin órtesis.",keywords:["MRI dinámica","mecánica de contacto in vivo","cartílago patelofemoral","tracking patelar","base de datos normativa","deformación cartilaginosa"]},
-  {id:6,branch:1,star:false,title:"Combining advanced computational and imaging techniques to estimate patellofemoral joint stress during downhill gait",authors:"Farrokhi S et al.",year:2020,journal:"Gait & Posture, 84, 105–110",problem:"Imposibilidad de medir directamente el estrés de contacto PF in vivo durante marcha en declive en pacientes con artrosis.",question:"¿Puede un marco computacional (fluoroscopía biplana + modelo de elemento discreto) discriminar perfiles de estrés PF entre pacientes con y sin artrosis?",method:"Fluoroscopía biplana dinámica (cinemática in vivo) + TC (geometría individual) + modelos de elemento discreto (DEA). Comparación artrosis PF vs controles.",results:"Pacientes con artrosis PF presentan mayores valores pico de estrés y distribución más concentrada en el facete lateral, consistente con patrones de degeneración condral.",conclusion:"El marco computacional puede evaluar cuantitativamente el efecto de intervenciones terapéuticas incluyendo órtesis PF personalizadas.",keywords:["artrosis patelofemoral","fluoroscopía biplana","elemento discreto","estrés de contacto","marcha en declive","TC","validación in vivo"]},
-  {id:7,branch:1,star:false,title:"Patellofemoral mechanics: a review of pathomechanics and research approaches",authors:"Fitzpatrick CK, Rullkoetter PJ",year:2020,journal:"Current Reviews in Musculoskeletal Medicine, 13(3), 326–337",problem:"Comprensión incompleta de los mecanismos biomecánicos que originan el dolor y la degeneración patelofemoral.",question:"¿Cuáles son los factores biomecánicos determinantes del SDPF y la artrosis PF, y qué enfoques metodológicos los investigan mejor?",method:"Revisión narrativa integradora de estudios in vitro, in vivo (MRI, fluoroscopía), análisis de movimiento 3D y modelación computacional.",results:"El maltracking patelar lateral —producto de factores estáticos y dinámicos— concentra el estrés en el facete lateral. Modelación sujeto-específica es el enfoque más adecuado.",conclusion:"Fundamenta el uso de modelación computacional sujeto-específica como metodología central de la tesis.",keywords:["maltracking patelar","patomecanismo","SDPF","displasia troclear","VMO","ángulo Q","revisión biomecánica"]},
-  {id:8,branch:1,star:false,title:"Knee muscle forces during walking and running in patellofemoral pain patients and pain-free controls",authors:"Besier TF, Fredericson M, Gold GE, Beaupré GS, Delp SL",year:2009,journal:"Journal of Biomechanics, 42(7), 898–905",problem:"Patrones alterados de activación muscular del cuádriceps en SDPF que generan mayor compresión PF no cuantificados mediante modelación.",question:"¿Difieren las fuerzas musculares de rodilla entre pacientes con SDPF y controles durante marcha y carrera, según modelación musculoesquelética?",method:"Captura de movimiento 3D + plataformas de fuerza + EMG. Estimación de fuerzas musculares individuales en OpenSim. Comparación SDPF vs controles.",results:"Pacientes con SDPF presentan fuerzas de cuádriceps e isquiotibiales 30–50% superiores durante carrera. Mayor co-contracción → mayores fuerzas de contacto PF.",conclusion:"Una órtesis PF efectiva debe reducir fuerzas de contacto sin incrementar co-contracción compensatoria — hipótesis evaluada computacionalmente en la tesis.",keywords:["fuerzas musculares","OpenSim","SDPF","co-contracción","VMO/VL","carrera","análisis de movimiento"]},
-  {id:9,branch:2,star:false,title:"Patellofemoral pain syndrome",authors:"Petersen W, Ellermann A, Gösele-Koppenburg A et al.",year:2014,journal:"Knee Surg Sports Traumatol Arthrosc, 22(10), 2264–2274",problem:"Etiología multifactorial del SDPF sin clasificación universalmente aceptada ni guías estandarizadas de tratamiento.",question:"¿Cuáles son los factores etiopatogénicos, criterios diagnósticos y opciones de tratamiento conservador con mayor evidencia para el SDPF?",method:"Revisión narrativa exhaustiva de ECA, revisiones sistemáticas y estudios de cohorte en PubMed, Cochrane y EMBASE hasta 2013.",results:"El SDPF es multifactorial (ángulo Q, debilidad VMO/cadera, displasia troclear, rigidez retináculo lateral). Ejercicio combinado: nivel I de evidencia. 40% persiste a largo plazo.",conclusion:"La persistencia sintomática y el riesgo de artrosis PF justifican el desarrollo de órtesis personalizadas.",keywords:["SDPF","etiología multifactorial","ángulo Q","displasia troclear","tratamiento conservador","artrosis PF","pronóstico"]},
-  {id:10,branch:2,star:false,title:"Management of patellofemoral pain syndrome",authors:"Dixit S, DiFiori JP, Burton M, Mines B",year:2007,journal:"American Family Physician, 75(2), 194–202",problem:"Variabilidad en las estrategias diagnósticas y terapéuticas del SDPF en atención primaria.",question:"¿Cuáles son las estrategias diagnósticas y terapéuticas con mayor evidencia para el manejo del SDPF en atención primaria?",method:"Revisión de literatura médica hasta 2006 con evaluación del nivel de evidencia según criterios SORT.",results:"Ejercicio de cuádriceps en cadena cinética cerrada: nivel B. Taping patelar: nivel B (corto plazo). Órtesis y plantillas: nivel C. Cirugía: reservada para casos refractarios.",conclusion:"La baja calidad de evidencia para dispositivos ortésicos subraya la necesidad de investigación que integre diseño personalizado con evaluación biomecánica cuantitativa.",keywords:["SDPF","atención primaria","ejercicio terapéutico","taping patelar","órtesis","nivel de evidencia","medicina deportiva"]},
-  {id:11,branch:2,star:true,title:"Knee orthoses for treating patellofemoral pain syndrome (Cochrane Review)",authors:"Callaghan MJ, Selfe J",year:2012,journal:"Cochrane Database of Systematic Reviews, (1), CD010513",problem:"Evidencia limitada y heterogénea sobre la eficacia clínica de las órtesis de rodilla para el SDPF.",question:"¿Son las órtesis de rodilla más efectivas que ningún tratamiento o el placebo para reducir el dolor y mejorar la función en SDPF?",method:"Búsqueda sistemática de ECA en Cochrane Central, MEDLINE, EMBASE, CINAHL y registros de ensayos.",results:"Evidencia de muy baja calidad. Ningún ECA midió cambios cinemáticos o cinéticos durante el uso del dispositivo.",conclusion:"La ausencia de evaluación biomecánica cuantitativa en ECA existentes justifica directamente el enfoque de validación computacional de la tesis.",keywords:["Cochrane","órtesis rodilla","SDPF","ECA","evidencia","riesgo de sesgo","mecanismo de acción"]},
-  {id:12,branch:2,star:true,title:"Biomechanical study of a tricompartmental unloader brace for patellofemoral or multicompartment knee osteoarthritis",authors:"McGibbon CA et al.",year:2020,journal:"Frontiers in Bioengineering and Biotechnology, 8, 604860",problem:"Ausencia de cuantificación biomecánica del efecto de órtesis tricompartamentales sobre las cargas articulares internas durante sentadilla.",question:"¿Puede un modelo sagital de rodilla cuantificar el efecto de diferentes configuraciones de una órtesis tricompartamental sobre las cargas PF y TF durante sentadilla profunda?",method:"Modelo sagital 2D de rodilla (APF + TF + ligamentos). Fuerza ortésica introducida como momento externo FB con brazo rB. Validado contra análisis de movimiento 3D.",results:"Reducción de hasta 35% en fuerzas pico de contacto PF en configuración óptima durante sentadilla profunda, sin comprometer adversamente las fuerzas TF.",conclusion:"Valida el uso de modelos computacionales para cuantificar el efecto de fuerzas ortésicas externas sobre la dinámica articular interna — metodología directamente aplicable en la tesis.",keywords:["órtesis tricompartamental","modelo sagital","sentadilla","fuerzas de contacto","artrosis PF","evaluación computacional","descarga articular"]},
-  {id:13,branch:2,star:false,title:"Patellofemoral pain: proximal, distal, and local factors — 2nd International Research Retreat",authors:"Powers CM, Bolgla LA, Callaghan MJ, Collins N, Sheehan FT",year:2012,journal:"J Orthop Sports Phys Ther, 42(6), A1–A54",problem:"Comprensión fragmentada del dolor PF desde perspectivas locales, proximales y distales sin consenso integrador.",question:"¿Cuál es la evidencia sobre factores biomecánicos proximales, distales y locales del dolor PF y qué intervenciones tienen respaldo científico?",method:"Consenso de expertos de la 2ª Reunión Internacional de Investigación sobre Dolor PF (2011).",results:"Órtesis con fuerza medial sobre la patela reducen lateralización e inclinación PF con mejoras en dolor a corto plazo. Mecanismo exacto de acción aún no determinado.",conclusion:"El consenso establece como prioridad de investigación el desarrollo de métodos de evaluación biomecánica de órtesis — objetivo directo de la tesis.",keywords:["consenso internacional","factores proximales","factores distales","tracking patelar","órtesis PF","taping","bracing"]},
-  {id:14,branch:3,star:true,title:"OpenSim: open-source software to create and analyze dynamic simulations of movement",authors:"Delp SL, Anderson FC, Arnold AS et al.",year:2007,journal:"IEEE Transactions on Biomedical Engineering, 54(11), 1940–1950",problem:"Falta de plataformas de código abierto accesibles para la construcción y análisis de modelos musculoesqueléticos dinámicos.",question:"¿Puede una plataforma de software de código abierto permitir a investigadores construir, personalizar y analizar modelos musculoesqueléticos de forma accesible y reproducible?",method:"Descripción de la arquitectura de OpenSim (librería Simbody, actuadores Hill, contacto compliant, CMC). Validación de predicciones contra datos experimentales de marcha y carrera.",results:"Errores <5% del pico de momento articular en dinámica inversa. Predicciones EMG consistentes con el CMC. Modelo Gait2392: 14 segmentos, 23 GDL, 92 músculos.",conclusion:"OpenSim es la plataforma de referencia para la simulación musculoesquelética de la tesis.",keywords:["OpenSim","Simbody","simulación musculoesquelética","dinámica multicuerpo","CMC","optimización estática","código abierto"]},
-  {id:15,branch:3,star:false,title:"OpenSim: a musculoskeletal modeling and simulation framework for in silico investigations and exchange",authors:"Seth A, Sherman M, Reinbolt JA, Delp SL",year:2015,journal:"Procedia IUTAM, 2, 212–232",problem:"Modelos computacionales de alto valor científico raramente compartidos, limitando reproducibilidad.",question:"¿Cómo puede una arquitectura de software modular y abierta facilitar el desarrollo, validación e intercambio de modelos musculoesqueléticos?",method:"Descripción de la arquitectura modular de OpenSim (Simbody), capacidades de simulación dinámica directa, predicción de movimiento y optimización.",results:"Repositorio público con intercambio de modelos entre +500 grupos en más de 50 países. Nuevas capacidades de simulación dinámica directa.",conclusion:"La arquitectura modular de OpenSim permite integrar restricciones cinemáticas del mecanismo policéntrico de la órtesis en el modelo multibody de la tesis.",keywords:["OpenSim","intercambio de modelos","simulación dinámica directa","arquitectura modular","in silico","reproducibilidad","biomecánica computacional"]},
-  {id:16,branch:3,star:true,title:"Grand challenge competition to predict in vivo knee loads (CAMS-Knee)",authors:"Fregly BJ et al.",year:2012,journal:"Journal of Orthopaedic Research, 30(4), 503–513",problem:"Falta de datos in vivo de fuerzas de contacto articular de rodilla para validar modelos musculoesqueléticos computacionales.",question:"¿Pueden los modelos musculoesqueléticos actuales predecir las fuerzas de contacto in vivo medidas directamente mediante prótesis instrumentadas?",method:"Competición científica: múltiples equipos predicen fuerzas de contacto de rodilla de un paciente con prótesis instrumentada (Orthoload) usando datos de análisis de movimiento.",results:"Alta variabilidad entre modelos. Establece el dataset CAMS-Knee como estándar internacional de validación.",conclusion:"El dataset CAMS-Knee es la referencia de validación del modelo de rodilla que se empleará en la tesis.",keywords:["CAMS-Knee","validación in vivo","prótesis instrumentada","fuerzas de contacto","reclutamiento muscular","Orthoload","estándar de referencia"]},
-  {id:17,branch:3,star:false,title:"Evaluation of the accuracy of musculoskeletal simulation during squats by means of instrumented knee prostheses",authors:"Schellenberg F et al.",year:2018,journal:"Medical Engineering & Physics, 60, 95–103",problem:"Capacidad predictiva desconocida del modelo Gait2392 de OpenSim para la sentadilla.",question:"¿Con qué precisión predice Gait2392 las fuerzas de contacto tibiofemoral in vivo durante la sentadilla en pacientes con prótesis instrumentadas?",method:"Datos CAMS-Knee procesados en OpenSim con Gait2392 escalado. Comparación predicciones vs mediciones directas de prótesis instrumentadas.",results:"Subestimación sistemática a bajos ángulos de flexión; sobreestimación de hasta 60% en flexión profunda (>80°).",conclusion:"Estos hallazgos orientan la estrategia de personalización del modelo y la interpretación de estimaciones de carga durante sentadilla con y sin órtesis.",keywords:["Gait2392","sentadilla","validación","CAMS-Knee","error de predicción","flexión profunda","OpenSim"]},
-  {id:18,branch:3,star:false,title:"Musculoskeletal multibody simulation analysis on the impact of patellar component design and positioning in TKA",authors:"Becher C et al.",year:2020,journal:"Applied Sciences, 10(7), 2365",problem:"Efecto de variaciones en el componente patelar de TKR sobre la dinámica APF no evaluable experimentalmente.",question:"¿Cómo afectan variaciones en el diseño y posicionamiento del componente patelar a las fuerzas de contacto y cinemática de la APF post-TKR?",method:"Modelo MMBS de rodilla post-TKR personalizado. Simulación de variaciones en grosor (+2, 0, -2 mm) y posición mediolateral durante sentadilla profunda.",results:"+2 mm de grosor → +27% fuerzas PF. Posición mediolateral → cinemática patelar afectada hasta 8%.",conclusion:"Valida el uso de simulaciones MMBS para evaluar el efecto de perturbaciones externas sobre la dinámica PF — fundamento de la evaluación computacional de la órtesis en la tesis.",keywords:["TKA","MMBS","componente patelar","fuerzas PF","sentadilla","cinemática patelar","modelo personalizado"]},
-  {id:19,branch:3,star:false,title:"Automated creation and tuning of personalised muscle paths for OpenSim musculoskeletal models of the knee joint",authors:"Modenese L et al.",year:2020,journal:"Biomechanics and Modeling in Mechanobiology, 20, 521–533",problem:"Los modelos genéricos de rodilla en OpenSim usan geometrías estándar que difieren de la anatomía individual.",question:"¿Es posible automatizar la creación de modelos de rodilla en OpenSim con geometrías y vías musculares específicos al sujeto?",method:"Pipeline automatizado: segmentación MRI → morfing poblacional → ajuste automático de parámetros musculotendinosos.",results:"Reducción hasta 40% en error del brazo de momento del cuádriceps vs modelos genéricos. Pipeline: de días a horas.",conclusion:"Establece el marco de personalización del modelo de rodilla de la tesis.",keywords:["modelos personalizados","OpenSim","morfing poblacional","MRI","brazos de momento","vías musculares","rodilla sujeto-específica"]},
-  {id:20,branch:3,star:false,title:"Multibody dynamics-based musculoskeletal modeling for gait analysis: a systematic review",authors:"Rasmussen J et al.",year:2024,journal:"Journal of NeuroEngineering and Rehabilitation, 21, 178",problem:"Diversidad de plataformas y metodologías de modelación dificulta la comparación de resultados.",question:"¿Cuáles son las plataformas más usadas para el análisis de marcha y cuáles son sus fortalezas y limitaciones?",method:"Revisión sistemática PRISMA. Comparación OpenSim vs AnyBody (TLEM 2.0).",results:"OpenSim: mayor flexibilidad y personalización. AnyBody: ventajas en predicción de GRF y tecnologías inalámbricas.",conclusion:"Orienta la selección de OpenSim como plataforma de la tesis.",keywords:["revisión sistemática","OpenSim","AnyBody","TLEM 2.0","análisis de marcha","reclutamiento muscular","comparación plataformas"]},
-  {id:21,branch:3,star:false,title:"Model-based estimation of muscle forces exerted during movements",authors:"Erdemir A et al.",year:2007,journal:"Clinical Biomechanics, 22(2), 131–154",problem:"El problema de redundancia muscular impide determinar directamente fuerzas musculares individuales durante el movimiento.",question:"¿Cuáles son los métodos disponibles para estimar fuerzas musculares mediante modelos?",method:"Revisión crítica de métodos: optimización estática, dinámica, EMG-driven y reducción.",results:"Optimización estática: bajo costo computacional. CMC: más realista pero computacionalmente costoso. EMG-driven: reduce indeterminación.",conclusion:"Establece las bases teóricas de los algoritmos de reclutamiento muscular en OpenSim/AnyBody.",keywords:["redundancia muscular","optimización estática","CMC","EMG-driven","fuerzas musculares","función de costo","biomecánica musculoesquelética"]},
-  {id:22,branch:4,star:false,title:"Polycentric exoprosthetic knee joints: extent of shortening during swing phase",authors:"Köhler TM, Bellmann M, Blumentritt S",year:2020,journal:"Prosthetics and Orthotics International",problem:"Comparación cuantitativa del acortamiento geométrico durante el balanceo entre diferentes diseños policéntricos.",question:"¿En qué medida difieren los diseños policéntricos de prótesis de rodilla en el grado de acortamiento durante balanceo?",method:"Análisis de 11 prótesis policéntricas comerciales. Cálculo de la trayectoria del CIR y acortamiento geométrico durante el balanceo.",results:"Acortamiento: 5–28 mm dependiendo del diseño. CIR posterior-superior → mayor acortamiento y estabilidad en apoyo.",conclusion:"El principio policéntrico de cuatro barras es el fundamento del concepto de articulación anatómicamente alineada de la órtesis PF.",keywords:["policéntrico","cuatro barras","CIR","prótesis de rodilla","acortamiento","balanceo","estabilidad en apoyo"]},
-  {id:23,branch:4,star:true,title:"Kinematic and kinetic assessment of a novel polycentric knee joint for powered walking assist exoskeletons",authors:"Seguin E, Doumit M",year:2021,journal:"Scientific Archives",problem:"Las bisagras monocéntricas en exoesqueletos generan fuerzas de pistoning que reducen el confort y alteran la cinemática natural.",question:"¿Puede un mecanismo policéntrico con pin alineado al CIR biológico reducir las fuerzas de reacción parasíticas en la interfaz dispositivo-usuario?",method:"Mecanismo pin-in-slot con 3 pines (uno alineado al CIR biológico), rango 0°–120°. Evaluación con captura de movimiento + sensores de fuerza.",results:"Reducción 35–50% en fuerzas de pistoning con mecanismo policéntrico vs monocéntrico. Sin restricción del ROM natural durante marcha asistida.",conclusion:"Valida la estrategia de alineación al CIR como principio fundamental de diseño para articulaciones externas de rodilla.",keywords:["exoesqueleto","mecanismo policéntrico","CIR","pistoning","compatibilidad cinemática","pin-in-slot","fuerzas de reacción"]},
-  {id:24,branch:4,star:true,title:"Adjustable polycentric mechanism for external knee joint prosthesis based on the instantaneous center of rotation",authors:"Hidrobo S, Valencia F, Tobar L",year:2024,journal:"Lecture Notes in Networks and Systems, 903. Springer, Cham",problem:"El error de aproximación de mecanismos de cuatro barras a la trayectoria biológica del CIR carece de métrica cuantitativa estandarizada.",question:"¿Puede un mecanismo ajustable de cuatro barras aproximar la trayectoria del CIR biológico con error mínimo usando la distancia de Fréchet como métrica?",method:"CIR de referencia a partir de datos experimentales. Síntesis de cuatro barras minimizando distancia de Fréchet. Validación CAD + prototipo 3D.",results:"Mejor configuración: 4-bar con tren de engranajes. Distancia de Fréchet: 6.87 mm. Rt = 0.93. Movimiento suave en 0°–120° sin juego mecánico.",conclusion:"La distancia de Fréchet como métrica de diseño y el prototipado 3D son metodologías directamente aplicables a la tesis.",keywords:["distancia de Fréchet","mecanismo policéntrico ajustable","CIR","síntesis de mecanismo","impresión 3D","cuatro barras","prótesis externa"]},
-  {id:25,branch:4,star:false,title:"Knee joint prototype based on cam mechanism — design and video analysis",authors:"Poliakov O et al.",year:2022,journal:"Computer Methods in Biomechanics and Biomedical Engineering, 26(11), 1305–1318",problem:"Los mecanismos de cuatro barras ofrecen aproximación limitada a la trayectoria real del CIR biológico en todos los ángulos.",question:"¿Puede un mecanismo de leva basado en los centroides cinemáticos de la rodilla replicar con mayor fidelidad el movimiento policéntrico?",method:"Centroides fija y móvil del CIR biológico determinadas de la literatura. Perfiles de leva diseñados a partir de centroides. CAD + análisis cinemático. Prototipo 3D + MATLAB.",results:"Error de trayectoria del CIR < 1.5 mm en todo el rango funcional. Movimiento suave y continuo. Mecanismo intercambiable y ajustable.",conclusion:"Aporta una alternativa de diseño mecánico (leva vs cuatro barras) y un método de validación cinemática por análisis de video aplicable al prototipo fabricado.",keywords:["mecanismo de leva","centroides cinemáticas","CIR","prototipo 3D","análisis de video","MATLAB","rodilla policéntrica"]},
-  {id:26,branch:4,star:false,title:"Development of four-bar polycentric knee joint with stance-phase knee flexion",authors:"Wang X, Favre P, Jolles BM",year:2023,journal:"Scientific Reports, 13, 22680",problem:"Prótesis policéntricas convencionales estabilizan la rodilla en apoyo impidiendo la flexión fisiológica durante esta fase.",question:"¿Puede un mecanismo de cuatro barras con CIR reposicionado permitir flexión de rodilla en apoyo, aproximando la marcha protésica a la bípeda normal?",method:"Optimización paramétrica del mecanismo de cuatro barras para ubicar el CIR frente al vector de reacción del suelo. Prototipo en prótesis transfemoral.",results:"8–15° de flexión de rodilla en apoyo (vs 0–2° en diseños convencionales). Mejora en simetría temporal del paso.",conclusion:"Demuestra la versatilidad del concepto policéntrico para adaptar la cinemática del dispositivo a objetivos funcionales específicos.",keywords:["cuatro barras","flexión en apoyo","CIR reposicionado","amputación transfemoral","marcha","análisis de marcha","prótesis policéntrica"]},
-  {id:28,branch:5,star:true,title:"Design and prototyping of an active knee orthosis: a dynamic and mechanical study",authors:"Sánchez-Angeles A, Capilla-González G, Núñez-Altamirano DA",year:2025,journal:"Journal of Mechanical Science and Technology",problem:"Falta de flujos de trabajo documentados para órtesis activas de rodilla personalizadas con análisis dinámico y mecánico completo.",question:"¿Es posible diseñar y prototipar una órtesis activa de rodilla mediante escaneo 3D y manufactura aditiva con análisis dinámico y mecánico del ensamble?",method:"Escaneo 3D del miembro inferior. CAD por ingeniería inversa. Análisis dinámico del mecanismo. FEA. Fabricación FDM con PLA/PETG. Pruebas funcionales.",results:"Flujo digital reduce tiempo de fabricación. FEA identifica zonas de concentración de estrés. Prototipo supera pruebas de resistencia.",conclusion:"Referente metodológico más cercano al proceso de diseño de la órtesis PF de la tesis.",keywords:["órtesis activa rodilla","escaneo 3D","CAD","FEA","FDM","análisis dinámico","prototipado"]},
-  {id:29,branch:5,star:false,title:"Empowering rehabilitation: design and structural analysis of a low-cost 3D-printed smart orthosis",authors:"Pustan M et al.",year:2024,journal:"Polymers, 16(10), 1303",problem:"Costo elevado de órtesis personalizadas convencionales limita el acceso.",question:"¿Puede un flujo de trabajo de bajo costo (escaneo 3D + CAD + FEA + FDM) producir una órtesis de rodilla con propiedades mecánicas adecuadas en rPET y PLA?",method:"Escaneo 3D de la rodilla del paciente. CAD por ingeniería inversa. Simulación cinemática 3D. FEA de flexión para rPET y PLA. Fabricación FDM.",results:"rPET: mayor tenacidad. PLA: mayor rigidez pero fractura frágil. Ambos viables para cargas funcionales.",conclusion:"Metodología directamente aplicable al diseño estructural de la órtesis PF de la tesis.",keywords:["órtesis bajo costo","FEA","rPET","PLA","escaneo 3D","selección de materiales","impresión 3D rodilla"]},
-  {id:30,branch:5,star:true,title:"A digital workflow for design and fabrication of bespoke orthoses using 3D scanning and 3D printing",authors:"Paterson AM et al.",year:2020,journal:"Scientific Reports, 10, 7028",problem:"Fabricación artesanal de órtesis personalizadas: intensiva en trabajo, alta variabilidad y tiempos prolongados.",question:"¿Puede un flujo de trabajo digital completo (escaneo 3D → CAD → FEA → impresión 3D) producir órtesis personalizadas con calidad clínica?",method:"Escaneo 3D (Artec Eva, desviación <0.1 mm). Algoritmos de relajación de geometría + superficies mínimas. FEA. Fabricación FDM con nylon PA12.",results:"Dispositivo aceptado y tolerado con éxito. Tiempo de producción: 5 días. FEA predijo correctamente las zonas de falla.",conclusion:"Referencia metodológica del flujo de trabajo digital para la tesis, adaptable al diseño de la órtesis PF.",keywords:["flujo de trabajo digital","Artec Eva","escaneo 3D","nylon PA12","FEA","órtesis a medida","validación clínica"]},
-  {id:31,branch:5,star:false,title:"Design and 3D printing of a customised wrist-hand orthosis",authors:"Cabás R et al.",year:2024,journal:"Progress in Additive Manufacturing",problem:"Fabricación convencional de órtesis de muñeca-mano: costosa, laboriosa y dependiente de expertise artesanal.",question:"¿Puede un flujo integral (escaneo 3D → CAD → FEM → FDM con PLA) producir una órtesis personalizada con propiedades mecánicas adecuadas?",method:"Escaneo 3D. CAD por ingeniería inversa con patrones de ventilación y zonas de refuerzo. FEA (estrés Von Mises). Fabricación FDM con PLA.",results:"Concentraciones de estrés en transiciones → resueltas con filetes y mayor espesor. Dispositivo clínicamente aceptado.",conclusion:"Guía metodológica reproducible y transferible a otras articulaciones, adaptable al diseño de la órtesis PF.",keywords:["órtesis muñeca-mano","FDM","PLA","FEA","ingeniería inversa","ventilación","documentación metodológica"]},
-  {id:32,branch:5,star:false,title:"Design and development of a customised knee positioning orthosis using low cost 3D printers",authors:"Santos S et al.",year:2017,journal:"Virtual and Physical Prototyping, 12(4), 322–332",problem:"Órtesis de posicionamiento de rodilla personalizadas para parálisis cerebral: costosas y de acceso limitado.",question:"¿Puede diseñarse una órtesis de posicionamiento de rodilla personalizada mediante escaneo 3D e impresoras 3D de bajo costo?",method:"Escaneo 3D del miembro inferior. Diseño iterativo de 4 conceptos en CAD. Fabricación FDM con PLA. Evaluación clínica con fisioterapia y familia.",results:"1 de 4 conceptos aceptado clínicamente. Costo total comparable al de un solo dispositivo convencional.",conclusion:"El proceso iterativo de múltiples conceptos con manufactura aditiva de bajo costo es viable clínicamente y aplicable al diseño personalizado de la órtesis PF.",keywords:["parálisis cerebral","órtesis posicionamiento rodilla","bajo costo","FDM","PLA","diseño iterativo","prototipado múltiple"]}
-];
+// Since we're generating a standalone HTML, embed SVG inline via JS
+// We'll use an img tag approach with object-fit, but since SVG is huge,
+// use an <object> or <img> with the data URI. Instead let's use a simpler approach:
+// We embed just a reference to the file path (works when opened locally alongside the SVG)
 
-// ═══════════════════════════════════════
-// PLACE LEAVES ON THE SVG CLOUDS
-// ═══════════════════════════════════════
-// Each branch zone center and spread area (x,y,rx,ry) matching the foliage ellipses
-const zones=[
-  {cx:130, cy:97,  rx:70, ry:52},  // B1 lavanda
-  {cx:248, cy:97,  rx:68, ry:50},  // B2 terracota
-  {cx:430, cy:42,  rx:78, ry:55},  // B3 azul
-  {cx:612, cy:97,  rx:68, ry:50},  // B4 ambar
-  {cx:730, cy:97,  rx:70, ry:52},  // B5 verde
-];
-
-const byBranch=[1,2,3,4,5].map(b=>papers.filter(p=>p.branch===b));
-const layer=document.getElementById('leaves-layer');
-const NS='http://www.w3.org/2000/svg';
-
-// Spiral/grid placement inside each cloud zone
-function leafPos(zone,n,i){
-  if(n===1) return {x:zone.cx,y:zone.cy};
-  // arrange in concentric rings
-  const ring=Math.floor(Math.sqrt(i*0.8));
-  const total_in_ring=Math.max(1,Math.round(2*Math.PI*(ring+1)));
-  const idx_in_ring=i-Math.round(Math.PI*ring*ring*0.8);
-  const angle=(idx_in_ring/total_in_ring)*Math.PI*2 - Math.PI/2;
-  const r=(ring+0.5)*Math.min(zone.rx,zone.ry)*0.32;
-  return {x:zone.cx+Math.cos(angle)*Math.min(r,zone.rx*0.82), y:zone.cy+Math.sin(angle)*Math.min(r,zone.ry*0.82)};
-}
-
-const allLeaves=[];
-
-byBranch.forEach((group,bi)=>{
-  const z=zones[bi];
-  const col=BC[bi];
-  const n=group.length;
-
-  group.forEach((paper,j)=>{
-    const pos=leafPos(z,n,j);
-    // slight jitter
-    const jx=(Math.sin(j*137.5)*8);
-    const jy=(Math.cos(j*137.5)*6);
-    const lx=pos.x+jx, ly=pos.y+jy;
-    const rot=j*43%180-90;
-
-    const g=document.createElementNS(NS,'g');
-    g.setAttribute('class','clickable-leaf');
-    g.setAttribute('data-id',paper.id);
-    g.setAttribute('data-bi',bi);
-    g.style.cursor='pointer';
-
-    // leaf ellipse
-    const el=document.createElementNS(NS,'ellipse');
-    el.setAttribute('cx',lx); el.setAttribute('cy',ly);
-    el.setAttribute('rx',paper.star?'13':'11');
-    el.setAttribute('ry',paper.star?'8':'7');
-    el.setAttribute('transform',`rotate(${rot},${lx},${ly})`);
-    el.setAttribute('fill',paper.star?col.dk:col.lf);
-    el.setAttribute('stroke',col.bd);
-    el.setAttribute('stroke-width','0.8');
-    g.appendChild(el);
-
-    // number text
-    const t=document.createElementNS(NS,'text');
-    t.setAttribute('x',lx); t.setAttribute('y',ly+1);
-    t.setAttribute('text-anchor','middle');
-    t.setAttribute('dominant-baseline','middle');
-    t.setAttribute('font-family','Outfit,sans-serif');
-    t.setAttribute('font-size',paper.star?'6.5':'6');
-    t.setAttribute('font-weight','700');
-    t.setAttribute('fill',paper.star?'#fff':col.c);
-    t.setAttribute('style','user-select:none;pointer-events:none');
-    t.textContent=paper.star?`${paper.id}★`:`${paper.id}`;
-    g.appendChild(t);
-
-    g.addEventListener('click',e=>{e.stopPropagation();selectLeaf(paper,bi,g);});
-    layer.appendChild(g);
-    allLeaves.push(g);
-  });
-});
-
-// Branch label click
-document.querySelectorAll('.branch-hit').forEach(el=>{
-  el.addEventListener('click',e=>{
-    e.stopPropagation();
-    selectBranch(parseInt(el.dataset.b),el);
-  });
-});
-document.getElementById('trunk-hit').addEventListener('click',e=>{e.stopPropagation();showTrunk();});
-document.getElementById('root-hit').addEventListener('click',e=>{e.stopPropagation();showRoot();});
-document.getElementById('root-lbl').addEventListener('click',e=>{e.stopPropagation();showRoot();});
-
-// ═══════════════════════════════════════
-// INFO PANEL
-// ═══════════════════════════════════════
-const infoEmpty=document.getElementById('info-empty');
-const infoCard=document.getElementById('info-card');
-let activeLeaf=null;
-
-function clearActive(){
-  allLeaves.forEach(l=>l.classList.remove('active'));
-  activeLeaf=null;
-}
-function showPanel(html){
-  infoEmpty.style.display='none';
-  infoCard.classList.add('show');
-  infoCard.innerHTML=html;
-  infoCard.scrollTop=0;
-}
-function hidePanel(){
-  infoEmpty.style.display='';
-  infoCard.classList.remove('show');
-  infoCard.innerHTML='';
-}
-
-function kwsHtml(kws,col){
-  return kws.map(k=>`<span class="i-kw" style="color:${col.c};border-color:${col.bd}">${k}</span>`).join('');
-}
-
-function selectLeaf(p,bi,el){
-  clearActive();
-  el.classList.add('active');
-  activeLeaf=el;
-  const col=BC[bi];
-  showPanel(`
-    <div class="i-tag" style="background:${col.bg};color:${col.c};border:1px solid ${col.bd}">${col.name}</div>
-    <div class="i-num">Ref. #${p.id} · ${p.year}${p.star?' · ★ Referencia central':''}</div>
-    <div class="i-title" style="color:${col.c}">${p.title}</div>
-    <div class="i-authors">${p.authors}</div>
-    <div class="i-journal">${p.journal}</div>
-    <div class="i-sec"><h5>Problema</h5><p>${p.problem}</p></div>
-    <div class="i-sec"><h5>Pregunta de investigación</h5><p>${p.question}</p></div>
-    <div class="i-sec"><h5>Metodología</h5><p>${p.method}</p></div>
-    <div class="i-sec"><h5>Resultados clave</h5><p>${p.results}</p></div>
-    <div class="i-sec"><h5>Relevancia para la tesis</h5><p>${p.conclusion}</p></div>
-    <div class="i-sec"><h5>Palabras clave</h5><div class="i-kws">${kwsHtml(p.keywords,col)}</div></div>
-  `);
-}
-
-function selectBranch(bi,el){
-  clearActive();
-  const col=BC[bi];
-  const grp=byBranch[bi];
-  showPanel(`
-    <div class="i-tag" style="background:${col.bg};color:${col.c};border:1px solid ${col.bd}">RAMA 0${bi+1}</div>
-    <div class="i-num">${grp.length} artículos</div>
-    <div class="i-title" style="color:${col.c}">${col.title}</div>
-    <div class="i-journal" style="padding-bottom:.8rem;border-bottom:1px solid rgba(0,0,0,.08)">Eje temático ${bi+1}</div>
-    <div class="branch-list">
-      ${grp.map(p=>`
-        <div class="blist-item" style="background:${col.bg};border-color:${col.bd};border-left-color:${col.c}"
-             onclick="clickFromBranch(${p.id},${bi})">
-          <div class="blist-num">#${p.id} · ${p.year}${p.star?' · ★':''}</div>
-          <div class="blist-title" style="color:${col.c}">${p.title}</div>
-          <div class="blist-authors">${p.authors}</div>
-        </div>`).join('')}
-    </div>
-  `);
-}
-
-window.clickFromBranch=function(pid,bi){
-  const p=papers.find(x=>x.id===pid);
-  if(!p)return;
-  const leafEl=document.querySelector(`.clickable-leaf[data-id="${pid}"]`);
-  clearActive();
-  if(leafEl)leafEl.classList.add('active');
-  selectLeaf(p,bi,leafEl||document.createElementNS(NS,'g'));
+const svgContainer = document.getElementById('svgContainer');
+// Try to load SVG inline
+const svgImg = document.createElement('img');
+svgImg.id = 'treeImg';
+svgImg.alt = 'Árbol de Ciencia';
+svgImg.style.cssText = 'width:100%;height:auto;display:block;';
+svgImg.src = 'svg_arbol.svg';
+svgImg.onerror = function() {
+  // fallback: show a styled placeholder
+  svgContainer.innerHTML = '<div style="width:100%;aspect-ratio:661.5/697.5;background:linear-gradient(135deg,#f5f1eb,#ede5d8);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:serif;color:#a08060;font-size:1rem;text-align:center;padding:20px;">🌳<br>Árbol de Ciencia<br><small style="font-size:0.75rem;opacity:0.7;margin-top:8px;display:block;">Coloca el archivo svg_arbol.svg en la misma carpeta que este HTML</small></div>';
 };
+svgContainer.appendChild(svgImg);
 
-function showTrunk(){
-  clearActive();
-  showPanel(`
-    <div class="i-tag" style="background:#EDF4FC;color:#2E5C8A;border:1px solid #7EB2D9">Tronco — Hipótesis central</div>
-    <div class="i-num">Hipótesis de trabajo · Maestría en Ingeniería Biomédica</div>
-    <div class="i-title" style="color:#2E5C8A">Una órtesis patelofemoral personalizada, optimizada mediante modelación multibody, reduce los momentos articulares patellofemorales sin generar restricciones en el ROM ni disminución en la activación del cuádriceps</div>
-    <div class="i-journal">Universidad del Norte · Barranquilla, Colombia · 2026</div>
-    <div class="i-sec"><h5>Variables independientes</h5><p>Diseño geométrico y rigidez de la órtesis PF personalizada. Configuración del mecanismo policéntrico (CIR alineado vs no alineado).</p></div>
-    <div class="i-sec"><h5>Variables dependientes</h5><p>Momentos articulares patellofemorales estimados (OpenSim), rango de movimiento (ROM) de rodilla, activación muscular del cuádriceps.</p></div>
-    <div class="i-sec"><h5>Condiciones de prueba</h5><p>Ascenso y descenso de escaleras y sentadilla profunda. Modelo Gait2392 escalado + sujeto-específico.</p></div>
-  `);
+// ── Card display logic ──
+function showCard(id) {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  document.getElementById('placeholder').style.display = 'none';
+  const card = document.getElementById(id);
+  if (card) {
+    card.classList.add('active');
+    document.getElementById('infoPanel').scrollTop = 0;
+  }
 }
 
-function showRoot(){
-  clearActive();
-  showPanel(`
-    <div class="i-tag" style="background:#FDF6E3;color:#7A5C10;border:1px solid #C8A96E">❧ Raíz — Pregunta de investigación</div>
-    <div class="i-num">Pregunta central de la tesis</div>
-    <div class="i-title" style="color:#7A5C10">¿Puede una órtesis patelofemoral personalizada reducir las cargas articulares estimadas sin alterar la cinemática natural ni la activación muscular del cuádriceps?</div>
-    <div class="i-journal">Diseñada mediante modelación biomecánica computacional y articulación policéntrica anatómicamente alineada</div>
-    <div class="i-sec"><h5>Contexto clínico</h5><p>El síndrome de dolor patelofemoral (SDPF) afecta al 11–17% de los pacientes con patología de rodilla. El 40% persiste con síntomas a 5 años. Las intervenciones ortésicas actuales carecen de validación biomecánica cuantitativa.</p></div>
-    <div class="i-sec"><h5>Objetivo general</h5><p>Diseñar, modelar y validar computacionalmente una órtesis PF personalizada que reduzca los momentos articulares patellofemorales estimados durante escaleras y sentadilla, sin generar restricciones en el ROM ni disminución en la activación del cuádriceps.</p></div>
-    <div class="i-sec"><h5>Justificación</h5><p>Ningún ECA actual mide cambios cinemáticos o cinéticos durante el uso de órtesis de rodilla (Callaghan & Selfe, Cochrane 2012). Esta tesis llena ese vacío mediante modelación computacional sujeto-específica con OpenSim.</p></div>
-  `);
-}
+// ── Hotspot interactions ──
+const tooltip = document.getElementById('tooltip');
 
-function showConv(){
-  clearActive();
-  showPanel(`
-    <div class="i-tag" style="background:#EBF7F2;color:#2A7A50;border:1px solid #7DC4A0">Convergencia — Resultado esperado</div>
-    <div class="i-num">Punto de integración de las 5 ramas</div>
-    <div class="i-title" style="color:#2A7A50">Órtesis PF personalizada validada computacionalmente</div>
-    <div class="i-journal">Las cinco ramas del árbol convergen en este resultado</div>
-    <div class="i-sec"><h5>Resultado esperado</h5><p>Reducción de momentos PF estimados · sin restricción del ROM · sin inhibición del cuádriceps · durante escaleras y sentadilla · con articulación policéntrica alineada al CIR biológico.</p></div>
-    <div class="i-sec"><h5>Metodología integrada</h5><p>Revisión sistemática PRISMA · Modelación multibody OpenSim (Gait2392 personalizado) · Diseño CAD + FEA · Prototipado 3D FDM · Validación cinemática y EMG · Distancia de Fréchet como métrica de CIR.</p></div>
-    <div class="i-sec"><h5>Cinco ejes integrados</h5><div class="i-kws">
-      ${BC.map((c,i)=>`<span class="i-kw" style="color:${c.c};border-color:${c.bd};background:${c.bg}">Rama ${i+1}: ${c.title}</span>`).join('')}
-    </div></div>
-  `);
-}
+document.querySelectorAll('.hotspot').forEach(el => {
+  el.style.cursor = 'pointer';
 
-// click on SVG background → deselect
-document.getElementById('tree-svg').addEventListener('click',()=>{clearActive();hidePanel();});
-document.getElementById('trunk-box').addEventListener('click',showTrunk);
-document.getElementById('root-box').addEventListener('click',showRoot);
-document.getElementById('conv-box').addEventListener('click',showConv);
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const target = this.dataset.target;
+    if (target) showCard(target);
+  });
 
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){clearActive();hidePanel();closeModal(null,true);}
+  el.addEventListener('mouseenter', function(e) {
+    const tip = this.dataset.tip;
+    if (tip) {
+      tooltip.textContent = tip;
+      tooltip.classList.add('show');
+    }
+  });
+
+  el.addEventListener('mousemove', function(e) {
+    tooltip.style.left = (e.clientX + 14) + 'px';
+    tooltip.style.top  = (e.clientY - 10) + 'px';
+  });
+
+  el.addEventListener('mouseleave', function() {
+    tooltip.classList.remove('show');
+  });
 });
 
-// MODAL
-const overlay=document.getElementById('modal-overlay');
-function closeModal(ev,force){
-  if(force||(ev&&ev.target===overlay)){overlay.classList.remove('open');document.body.style.overflow='';}
-}
+// ── Branch list hover colors ──
+const branchColors = {
+  'rama01': 'var(--rama1)',
+  'rama02': 'var(--rama2)',
+  'rama03': 'var(--rama3)',
+  'rama04': 'var(--rama4)',
+  'rama05': 'var(--rama5)',
+};
+document.querySelectorAll('.branch-list li').forEach(li => {
+  const numEl = li.querySelector('.num');
+  const bg = numEl ? numEl.style.background : null;
+  li.addEventListener('mouseenter', function() {
+    this.style.background = 'rgba(0,0,0,0.04)';
+    this.style.borderColor = 'rgba(0,0,0,0.08)';
+  });
+  li.addEventListener('mouseleave', function() {
+    this.style.background = '';
+    this.style.borderColor = 'transparent';
+  });
+});
 </script>
 </body>
 </html>
