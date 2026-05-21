@@ -266,6 +266,23 @@
     .tree-panel { padding: 20px; }
   }
 </style>
+<style>
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--subtext);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.back-btn:hover { background: #f0ece4; }
+</style>
 </head>
 <body>
 
@@ -277,72 +294,49 @@
 </header>
 
 <div class="main-layout">
-  <!-- LEFT: SVG Tree with hotspot overlay -->
   <div class="tree-panel">
     <div class="tree-wrapper" id="treeWrapper">
-      <!-- SVG will be injected here by JS from external file approach -->
-      <div id="svgContainer"></div>
-      <!-- Hotspot overlay (absolute positioned over SVG) -->
-      <svg id="hotspots" viewBox="0 0 661.5 697.5" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
-        <!-- Branch circles 01-05 -->
-        <!-- 01 purple ~(258,400) in original coords -->
-        <circle cx="258" cy="400" r="24" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="rama01-list" data-tip="Rama 01: Anatomía y Biomecánica PF" style="pointer-events:all;"/>
-        <!-- 02 pink ~(285,338) -->
-        <circle cx="285" cy="338" r="24" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="rama02-list" data-tip="Rama 02: SDPF y Tratamiento Conservador" style="pointer-events:all;"/>
-        <!-- 03 blue ~(340,265) -->
-        <circle cx="340" cy="265" r="24" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="rama03-list" data-tip="Rama 03: Modelación Biomecánica Computacional" style="pointer-events:all;"/>
-        <!-- 04 gold ~(410,325) -->
-        <circle cx="410" cy="325" r="24" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="rama04-list" data-tip="Rama 04: Articulación Policéntrica y CIR" style="pointer-events:all;"/>
-        <!-- 05 green ~(370,408) -->
-        <circle cx="370" cy="408" r="24" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="rama05-list" data-tip="Rama 05: Diseño Personalizado - Impresión 3D" style="pointer-events:all;"/>
-
-        <!-- Bombillo encendido (tronco) ~(322,476) -->
-        <circle cx="322" cy="476" r="18" fill="rgba(255,255,255,0.0)" class="hotspot" data-target="hipotesis" data-tip="Hipótesis central" style="pointer-events:all;"/>
-
-        <!-- Bombillo pregunta (raíz) ~(511,679) -->
-        <circle cx="511" cy="679" r="22" fill="rgba(255,255,255,0.0)" class="hotspot" data-target="pregunta" data-tip="Pregunta de investigación" style="pointer-events:all;"/>
-
-        <!-- ===== RAMA 01 leaf numbers (purple) ===== -->
-        <!-- Based on PDF: numbers 1-6 scattered in purple zone (upper-left) -->
-        <!-- 1 ~(232,340) --> <circle cx="232" cy="340" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p01" data-tip="R01·1 Subject-specific evaluation of PFJ" style="pointer-events:all;"/>
-        <!-- 2 ~(192,365) --> <circle cx="192" cy="365" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p02" data-tip="R01·2 A computer model to simulate patellar biomechanics" style="pointer-events:all;"/>
-        <!-- 3 ~(165,335) --> <circle cx="165" cy="335" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p03" data-tip="R01·3 In vivo PF contact mechanics – dynamic MRI" style="pointer-events:all;"/>
-        <!-- 4 ~(148,305) --> <circle cx="148" cy="305" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p04" data-tip="R01·4 Combining computational and imaging techniques" style="pointer-events:all;"/>
-        <!-- 5 ~(165,275) --> <circle cx="165" cy="275" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p05" data-tip="R01·5 PF mechanics: review of pathomechanics" style="pointer-events:all;"/>
-        <!-- 6 ~(130,265) --> <circle cx="130" cy="265" r="14" fill="rgba(184,169,212,0.0)" class="hotspot" data-target="r01p06" data-tip="R01·6 Knee muscle forces – walking and running" style="pointer-events:all;"/>
-
-        <!-- ===== RAMA 02 leaf numbers (pink) ===== -->
-        <!-- 1 ~(260,295) --> <circle cx="260" cy="295" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p01" data-tip="R02·1 Influence of abnormal hip mechanics" style="pointer-events:all;"/>
-        <!-- 2 ~(240,258) --> <circle cx="240" cy="258" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p02" data-tip="R02·2 PF pain – Consensus statement 4th Retreat" style="pointer-events:all;"/>
-        <!-- 3 ~(218,235) --> <circle cx="218" cy="235" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p03" data-tip="R02·3 Patellofemoral pain syndrome" style="pointer-events:all;"/>
-        <!-- 4 ~(235,210) --> <circle cx="235" cy="210" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p04" data-tip="R02·4 Management of PFPS" style="pointer-events:all;"/>
-        <!-- 5 ~(258,192) --> <circle cx="258" cy="192" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p05" data-tip="R02·5 Knee orthoses for PFPS (Cochrane)" style="pointer-events:all;"/>
-        <!-- 6 ~(278,172) --> <circle cx="278" cy="172" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p06" data-tip="R02·6 Biomechanical study tricompartmental brace" style="pointer-events:all;"/>
-        <!-- 7 ~(298,158) --> <circle cx="298" cy="158" r="14" fill="rgba(232,180,184,0.0)" class="hotspot" data-target="r02p07" data-tip="R02·7 PF pain: proximal, distal, and local factors" style="pointer-events:all;"/>
-
-        <!-- ===== RAMA 03 leaf numbers (blue) ===== -->
-        <!-- 1 ~(322,148) --> <circle cx="322" cy="148" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p01" data-tip="R03·1 OpenSim: open-source software" style="pointer-events:all;"/>
-        <!-- 2 ~(348,140) --> <circle cx="348" cy="140" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p02" data-tip="R03·2 OpenSim: musculoskeletal modeling framework" style="pointer-events:all;"/>
-        <!-- 3 ~(372,132) --> <circle cx="372" cy="132" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p03" data-tip="R03·3 Grand challenge competition – CAMS-Knee" style="pointer-events:all;"/>
-        <!-- 4 ~(394,145) --> <circle cx="394" cy="145" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p04" data-tip="R03·4 Accuracy of musculoskeletal simulation during squats" style="pointer-events:all;"/>
-        <!-- 5 ~(415,158) --> <circle cx="415" cy="158" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p05" data-tip="R03·5 Multibody simulation – patellar component design TKA" style="pointer-events:all;"/>
-        <!-- 6 ~(432,172) --> <circle cx="432" cy="172" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p06" data-tip="R03·6 Automated creation of personalised muscle paths" style="pointer-events:all;"/>
-        <!-- 7 ~(445,190) --> <circle cx="445" cy="190" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p07" data-tip="R03·7 Multibody dynamics-based modeling – systematic review" style="pointer-events:all;"/>
-        <!-- 8 ~(455,210) --> <circle cx="455" cy="210" r="14" fill="rgba(168,205,224,0.0)" class="hotspot" data-target="r03p08" data-tip="R03·8 Model-based estimation of muscle forces" style="pointer-events:all;"/>
-
-        <!-- ===== RAMA 04 leaf numbers (gold) ===== -->
-        <!-- 1 ~(490,245) --> <circle cx="490" cy="245" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p01" data-tip="R04·1 Polycentric exoprosthetic knee joints" style="pointer-events:all;"/>
-        <!-- 2 ~(498,275) --> <circle cx="498" cy="275" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p02" data-tip="R04·2 Kinematic assessment novel polycentric knee" style="pointer-events:all;"/>
-        <!-- 3 ~(500,305) --> <circle cx="500" cy="305" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p03" data-tip="R04·3 Adjustable polycentric mechanism – CIR" style="pointer-events:all;"/>
-        <!-- 4 ~(496,338) --> <circle cx="496" cy="338" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p04" data-tip="R04·4 Knee joint prototype based on cam mechanism" style="pointer-events:all;"/>
-        <!-- 5 ~(482,365) --> <circle cx="482" cy="365" r="14" fill="rgba(212,184,122,0.0)" class="hotspot" data-target="r04p05" data-tip="R04·5 Development of four-bar polycentric knee joint" style="pointer-events:all;"/>
-
-        <!-- ===== RAMA 05 leaf numbers (green) ===== -->
-        <!-- 1 ~(445,385) --> <circle cx="445" cy="385" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p01" data-tip="R05·1 Design and prototyping active knee orthosis" style="pointer-events:all;"/>
-        <!-- 2 ~(430,415) --> <circle cx="430" cy="415" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p02" data-tip="R05·2 Empowering rehabilitation – low-cost 3D orthosis" style="pointer-events:all;"/>
-        <!-- 3 ~(428,445) --> <circle cx="428" cy="445" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p03" data-tip="R05·3 Digital workflow for bespoke orthoses" style="pointer-events:all;"/>
-        <!-- 4 ~(420,475) --> <circle cx="420" cy="475" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p04" data-tip="R05·4 Design and 3D printing – wrist-hand orthosis" style="pointer-events:all;"/>
-        <!-- 5 ~(398,490) --> <circle cx="398" cy="490" r="14" fill="rgba(126,202,176,0.0)" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis – low cost 3D" style="pointer-events:all;"/>
+      <div id="svgContainer" style="width:100%;position:relative;"></div>
+      <!-- Hotspot overlay -->
+      <svg id="hotspots" viewBox="0 0 661.5 697.499983" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="280.8" cy="393.6" r="24" fill="transparent" class="hotspot" data-target="rama01-list" data-tip="Rama 01: Anatomía y Biomecánica PF" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="287.4" cy="317.2" r="24" fill="transparent" class="hotspot" data-target="rama02-list" data-tip="Rama 02: SDPF y Tratamiento Conservador" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="355.1" cy="239.1" r="24" fill="transparent" class="hotspot" data-target="rama03-list" data-tip="Rama 03: Modelación Biomecánica Computacional" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="422.1" cy="314.6" r="24" fill="transparent" class="hotspot" data-target="rama04-list" data-tip="Rama 04: Articulación Policéntrica y CIR" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="389.5" cy="421.3" r="24" fill="transparent" class="hotspot" data-target="rama05-list" data-tip="Rama 05: Diseño Personalizado - Impresión 3D" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="340.0" cy="476.0" r="20" fill="transparent" class="hotspot" data-target="hipotesis" data-tip="Hipótesis central" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="511.0" cy="660.0" r="22" fill="transparent" class="hotspot" data-target="pregunta" data-tip="Pregunta de investigación" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="237.6" cy="468.2" r="18" fill="transparent" class="hotspot" data-target="r01p01" data-tip="R01·1 Subject-specific evaluation PFJ" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="140.1" cy="472.8" r="18" fill="transparent" class="hotspot" data-target="r01p02" data-tip="R01·2 Computer model patellar biomechanics" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="87.6" cy="396.6" r="18" fill="transparent" class="hotspot" data-target="r01p03" data-tip="R01·3 In vivo PF contact mechanics" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="26.1" cy="336.3" r="18" fill="transparent" class="hotspot" data-target="r01p04" data-tip="R01·4 Computational imaging PFJ stress" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="35.1" cy="257.5" r="18" fill="transparent" class="hotspot" data-target="r01p05" data-tip="R01·5 PF mechanics: review pathomechanics" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="60.8" cy="188.1" r="18" fill="transparent" class="hotspot" data-target="r01p06" data-tip="R01·6 Knee muscle forces walking/running" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="97.1" cy="148.9" r="18" fill="transparent" class="hotspot" data-target="r02p01" data-tip="R02·1 Abnormal hip mechanics on knee injury" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="118.7" cy="124.2" r="18" fill="transparent" class="hotspot" data-target="r02p02" data-tip="R02·2 PF pain consensus 4th Retreat" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="146.5" cy="100.9" r="18" fill="transparent" class="hotspot" data-target="r02p03" data-tip="R02·3 Patellofemoral pain syndrome" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="173.7" cy="79.2" r="18" fill="transparent" class="hotspot" data-target="r02p04" data-tip="R02·4 Management of PFPS" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="205.2" cy="61.5" r="18" fill="transparent" class="hotspot" data-target="r02p05" data-tip="R02·5 Knee orthoses PFPS Cochrane" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="239.1" cy="53.0" r="18" fill="transparent" class="hotspot" data-target="r02p06" data-tip="R02·6 Tricompartmental unloader brace" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="275.7" cy="48.4" r="18" fill="transparent" class="hotspot" data-target="r02p07" data-tip="R02·7 PF pain proximal distal local factors" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="303.9" cy="43.0" r="18" fill="transparent" class="hotspot" data-target="r03p01" data-tip="R03·1 OpenSim open-source software" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="336.9" cy="43.0" r="18" fill="transparent" class="hotspot" data-target="r03p02" data-tip="R03·2 OpenSim musculoskeletal framework" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="369.6" cy="45.4" r="18" fill="transparent" class="hotspot" data-target="r03p03" data-tip="R03·3 Grand challenge CAMS-Knee" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="398.4" cy="53.0" r="18" fill="transparent" class="hotspot" data-target="r03p04" data-tip="R03·4 Accuracy musculoskeletal simulation" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="429.4" cy="57.6" r="18" fill="transparent" class="hotspot" data-target="r03p05" data-tip="R03·5 Multibody simulation patellar TKA" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="456.9" cy="69.2" r="18" fill="transparent" class="hotspot" data-target="r03p06" data-tip="R03·6 Automated muscle paths OpenSim" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="484.9" cy="83.9" r="18" fill="transparent" class="hotspot" data-target="r03p07" data-tip="R03·7 Multibody dynamics systematic review" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="505.9" cy="105.0" r="18" fill="transparent" class="hotspot" data-target="r03p08" data-tip="R03·8 Model-based estimation muscle forces" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="539.7" cy="131.2" r="18" fill="transparent" class="hotspot" data-target="r04p01" data-tip="R04·1 Polycentric exoprosthetic knee joints" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="567.1" cy="153.4" r="18" fill="transparent" class="hotspot" data-target="r04p02" data-tip="R04·2 Novel polycentric knee exoskeleton" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="593.4" cy="193.0" r="18" fill="transparent" class="hotspot" data-target="r04p03" data-tip="R04·3 Adjustable polycentric mechanism CIR" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="608.0" cy="236.2" r="18" fill="transparent" class="hotspot" data-target="r04p04" data-tip="R04·4 Knee prototype cam mechanism" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="608.0" cy="283.8" r="18" fill="transparent" class="hotspot" data-target="r04p05" data-tip="R04·5 Four-bar polycentric knee joint" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="634.3" cy="320.2" r="18" fill="transparent" class="hotspot" data-target="r05p01" data-tip="R05·1 Design prototyping active knee orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="619.6" cy="393.9" r="18" fill="transparent" class="hotspot" data-target="r05p02" data-tip="R05·2 Low-cost 3D-printed smart orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="573.3" cy="447.8" r="18" fill="transparent" class="hotspot" data-target="r05p03" data-tip="R05·3 Digital workflow bespoke orthoses" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="511.2" cy="499.0" r="18" fill="transparent" class="hotspot" data-target="r05p04" data-tip="R05·4 Design 3D printing wrist-hand orthosis" style="pointer-events:all;cursor:pointer;"/>
+        <circle cx="432.4" cy="486.7" r="18" fill="transparent" class="hotspot" data-target="r05p05" data-tip="R05·5 Customised knee positioning orthosis" style="pointer-events:all;cursor:pointer;"/>
       </svg>
     </div>
 
@@ -518,6 +512,7 @@
 
     <!-- ===== PAPER CARDS RAMA 01 ===== -->
     <div class="card" id="r01p01">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 1</span>
         <h2>Subject-specific evaluation of patellofemoral joint biomechanics during functional activity</h2>
@@ -532,6 +527,7 @@
     </div>
 
     <div class="card" id="r01p02">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 2</span>
         <h2>A computer model to simulate patellar biomechanics following total knee replacement</h2>
@@ -546,6 +542,7 @@
     </div>
 
     <div class="card" id="r01p03">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 3</span>
         <h2>In vivo patellofemoral contact mechanics during active extension using dynamic MRI</h2>
@@ -560,6 +557,7 @@
     </div>
 
     <div class="card" id="r01p04">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 4</span>
         <h2>Combining advanced computational and imaging techniques to estimate patellofemoral joint stress during downhill gait</h2>
@@ -574,6 +572,7 @@
     </div>
 
     <div class="card" id="r01p05">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 5</span>
         <h2>Patellofemoral mechanics: a review of pathomechanics and research approaches</h2>
@@ -588,6 +587,7 @@
     </div>
 
     <div class="card" id="r01p06">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama01-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama1)">Rama 01 · Paper 6</span>
         <h2>Knee muscle forces during walking and running in patellofemoral pain patients and pain-free controls</h2>
@@ -603,6 +603,7 @@
 
     <!-- ===== PAPER CARDS RAMA 02 ===== -->
     <div class="card" id="r02p01">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 1</span>
         <h2>The influence of abnormal hip mechanics on knee injury: a biomechanical perspective</h2>
@@ -617,6 +618,7 @@
     </div>
 
     <div class="card" id="r02p02">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 2</span>
         <h2>Patellofemoral pain (Consensus statement — 4th International Research Retreat)</h2>
@@ -631,6 +633,7 @@
     </div>
 
     <div class="card" id="r02p03">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 3</span>
         <h2>Patellofemoral pain syndrome</h2>
@@ -645,6 +648,7 @@
     </div>
 
     <div class="card" id="r02p04">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 4</span>
         <h2>Management of patellofemoral pain syndrome</h2>
@@ -659,6 +663,7 @@
     </div>
 
     <div class="card" id="r02p05">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 5</span>
         <h2>Knee orthoses for treating patellofemoral pain syndrome (Cochrane Review)</h2>
@@ -673,6 +678,7 @@
     </div>
 
     <div class="card" id="r02p06">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 6</span>
         <h2>Biomechanical study of a tricompartmental unloader brace for patellofemoral or multicompartment knee osteoarthritis</h2>
@@ -687,6 +693,7 @@
     </div>
 
     <div class="card" id="r02p07">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama02-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama2)">Rama 02 · Paper 7</span>
         <h2>Patellofemoral pain: proximal, distal, and local factors — 2nd International Research Retreat</h2>
@@ -702,6 +709,7 @@
 
     <!-- ===== PAPER CARDS RAMA 03 ===== -->
     <div class="card" id="r03p01">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 1</span>
         <h2>OpenSim: open-source software to create and analyze dynamic simulations of movement</h2>
@@ -716,6 +724,7 @@
     </div>
 
     <div class="card" id="r03p02">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 2</span>
         <h2>OpenSim: a musculoskeletal modeling and simulation framework for in silico investigations and exchange</h2>
@@ -730,6 +739,7 @@
     </div>
 
     <div class="card" id="r03p03">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 3</span>
         <h2>Grand challenge competition to predict in vivo knee loads (CAMS-Knee)</h2>
@@ -744,6 +754,7 @@
     </div>
 
     <div class="card" id="r03p04">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 4</span>
         <h2>Evaluation of the accuracy of musculoskeletal simulation during squats by means of instrumented knee prostheses</h2>
@@ -758,6 +769,7 @@
     </div>
 
     <div class="card" id="r03p05">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 5</span>
         <h2>Musculoskeletal multibody simulation analysis on the impact of patellar component design and positioning in TKA</h2>
@@ -772,6 +784,7 @@
     </div>
 
     <div class="card" id="r03p06">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 6</span>
         <h2>Automated creation and tuning of personalised muscle paths for OpenSim musculoskeletal models of the knee joint</h2>
@@ -786,6 +799,7 @@
     </div>
 
     <div class="card" id="r03p07">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 7</span>
         <h2>Multibody dynamics-based musculoskeletal modeling for gait analysis: a systematic review</h2>
@@ -800,6 +814,7 @@
     </div>
 
     <div class="card" id="r03p08">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama03-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama3)">Rama 03 · Paper 8</span>
         <h2>Model-based estimation of muscle forces exerted during movements</h2>
@@ -815,6 +830,7 @@
 
     <!-- ===== PAPER CARDS RAMA 04 ===== -->
     <div class="card" id="r04p01">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama04-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 1</span>
         <h2>Polycentric exoprosthetic knee joints: extent of shortening during swing phase</h2>
@@ -829,6 +845,7 @@
     </div>
 
     <div class="card" id="r04p02">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama04-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 2</span>
         <h2>Kinematic and kinetic assessment of a novel polycentric knee joint for powered walking assist exoskeletons</h2>
@@ -843,6 +860,7 @@
     </div>
 
     <div class="card" id="r04p03">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama04-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 3</span>
         <h2>Adjustable polycentric mechanism for external knee joint prosthesis based on the instantaneous center of rotation</h2>
@@ -857,6 +875,7 @@
     </div>
 
     <div class="card" id="r04p04">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama04-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 4</span>
         <h2>Knee joint prototype based on cam mechanism — design and video analysis</h2>
@@ -871,6 +890,7 @@
     </div>
 
     <div class="card" id="r04p05">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama04-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama4)">Rama 04 · Paper 5</span>
         <h2>Development of four-bar polycentric knee joint with stance-phase knee flexion</h2>
@@ -886,6 +906,7 @@
 
     <!-- ===== PAPER CARDS RAMA 05 ===== -->
     <div class="card" id="r05p01">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama05-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 1</span>
         <h2>Design and prototyping of an active knee orthosis: a dynamic and mechanical study</h2>
@@ -900,6 +921,7 @@
     </div>
 
     <div class="card" id="r05p02">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama05-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 2</span>
         <h2>Empowering rehabilitation: design and structural analysis of a low-cost 3D-printed smart orthosis</h2>
@@ -914,6 +936,7 @@
     </div>
 
     <div class="card" id="r05p03">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama05-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 3</span>
         <h2>A digital workflow for design and fabrication of bespoke orthoses using 3D scanning and 3D printing</h2>
@@ -928,6 +951,7 @@
     </div>
 
     <div class="card" id="r05p04">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama05-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 4</span>
         <h2>Design and 3D printing of a customised wrist-hand orthosis</h2>
@@ -942,6 +966,7 @@
     </div>
 
     <div class="card" id="r05p05">
+      <div style="margin-bottom:14px;"><button onclick="showCard('rama05-list')" class="back-btn">← Volver a la lista</button></div>
       <div class="card-header">
         <span class="rama-tag" style="background:var(--rama5)">Rama 05 · Paper 5</span>
         <h2>Design and development of a customised knee positioning orthosis using low cost 3D printers</h2>
@@ -955,6 +980,7 @@
       </div>
     </div>
 
+  
   </div><!-- /info-panel -->
 </div><!-- /main-layout -->
 
@@ -962,27 +988,22 @@
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-// ── Load SVG ──
-fetch('/mnt/user-data/uploads/svg_arbol.svg')
-  .catch(() => null);
-
-// Since we're generating a standalone HTML, embed SVG inline via JS
-// We'll use an img tag approach with object-fit, but since SVG is huge,
-// use an <object> or <img> with the data URI. Instead let's use a simpler approach:
-// We embed just a reference to the file path (works when opened locally alongside the SVG)
-
+// ── Load SVG inline ──
 const svgContainer = document.getElementById('svgContainer');
-// Try to load SVG inline
-const svgImg = document.createElement('img');
-svgImg.id = 'treeImg';
-svgImg.alt = 'Árbol de Ciencia';
-svgImg.style.cssText = 'width:100%;height:auto;display:block;';
-svgImg.src = 'svg_arbol.svg';
-svgImg.onerror = function() {
-  // fallback: show a styled placeholder
-  svgContainer.innerHTML = '<div style="width:100%;aspect-ratio:661.5/697.5;background:linear-gradient(135deg,#f5f1eb,#ede5d8);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:serif;color:#a08060;font-size:1rem;text-align:center;padding:20px;">🌳<br>Árbol de Ciencia<br><small style="font-size:0.75rem;opacity:0.7;margin-top:8px;display:block;">Coloca el archivo svg_arbol.svg en la misma carpeta que este HTML</small></div>';
-};
-svgContainer.appendChild(svgImg);
+fetch('svg_arbol.svg')
+  .then(r => r.text())
+  .then(svgText => {
+    svgContainer.innerHTML = svgText;
+    const svg = svgContainer.querySelector('svg');
+    if (svg) {
+      svg.style.width = '100%';
+      svg.style.height = 'auto';
+      svg.style.display = 'block';
+    }
+  })
+  .catch(() => {
+    svgContainer.innerHTML = '<div style="width:100%;aspect-ratio:661.5/697.5;background:linear-gradient(135deg,#f5f1eb,#ede5d8);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:serif;color:#a08060;font-size:1rem;text-align:center;padding:20px;">🌳<br>Árbol de Ciencia<br><small style="font-size:0.75rem;opacity:0.7;margin-top:8px;display:block;">Coloca el archivo svg_arbol.svg en la misma carpeta que este HTML</small></div>';
+  });
 
 // ── Card display logic ──
 function showCard(id) {
@@ -999,8 +1020,6 @@ function showCard(id) {
 const tooltip = document.getElementById('tooltip');
 
 document.querySelectorAll('.hotspot').forEach(el => {
-  el.style.cursor = 'pointer';
-
   el.addEventListener('click', function(e) {
     e.stopPropagation();
     const target = this.dataset.target;
@@ -1026,16 +1045,7 @@ document.querySelectorAll('.hotspot').forEach(el => {
 });
 
 // ── Branch list hover colors ──
-const branchColors = {
-  'rama01': 'var(--rama1)',
-  'rama02': 'var(--rama2)',
-  'rama03': 'var(--rama3)',
-  'rama04': 'var(--rama4)',
-  'rama05': 'var(--rama5)',
-};
 document.querySelectorAll('.branch-list li').forEach(li => {
-  const numEl = li.querySelector('.num');
-  const bg = numEl ? numEl.style.background : null;
   li.addEventListener('mouseenter', function() {
     this.style.background = 'rgba(0,0,0,0.04)';
     this.style.borderColor = 'rgba(0,0,0,0.08)';
